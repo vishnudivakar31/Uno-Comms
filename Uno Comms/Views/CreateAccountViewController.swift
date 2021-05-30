@@ -42,8 +42,19 @@ class CreateAccountViewController: UIViewController {
         changePlaceholderColor()
         beautifySubmitButton()
         assignKeyboardDelegatesToTextField()
+        assignGestureToGoBack()
     }
     
+    private func assignGestureToGoBack() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(goBack))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc private func goBack(gesture: UIGestureRecognizer) {
+        performSegue(withIdentifier: "GoToLoginScreen", sender: self)
+    }
+     
     private func changePlaceholderColor() {
         nameTextField.attributedPlaceholder = NSAttributedString(string: "Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
         
@@ -71,6 +82,8 @@ class CreateAccountViewController: UIViewController {
     
     @IBAction func onSubmitTapped(_ sender: Any) {
     }
+    
+    
     
 }
 
