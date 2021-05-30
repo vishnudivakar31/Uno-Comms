@@ -14,6 +14,7 @@
 		8B0D125F2663C6E800449952 /* Uno_Comms.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D125D2663C6E800449952 /* Uno_Comms.xcdatamodeld */; };
 		8B0D12612663C6E900449952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0D12602663C6E900449952 /* Assets.xcassets */; };
 		8B0D12642663C6E900449952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B0D12622663C6E900449952 /* LaunchScreen.storyboard */; };
+		8B5FBFD4266420CC005052CD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8B0D12602663C6E900449952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B0D12632663C6E900449952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B0D12652663C6E900449952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				8B0D12582663C6E800449952 /* LoginView.swift */,
+				8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5FBFD4266420CC005052CD /* CreateAccountViewController.swift in Sources */,
 				8B0D12592663C6E800449952 /* LoginView.swift in Sources */,
 				8B0D12552663C6E800449952 /* AppDelegate.swift in Sources */,
 				8B0D125F2663C6E800449952 /* Uno_Comms.xcdatamodeld in Sources */,

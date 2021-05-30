@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="-91" y="94"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Account View Controller-->
         <scene sceneID="3vw-Jy-g7I">
             <objects>
-                <viewController id="bTp-4Z-xpJ" sceneMemberID="viewController">
+                <viewController id="bTp-4Z-xpJ" customClass="CreateAccountViewController" customModule="Uno_Comms" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hya-Ob-GOq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,13 +161,20 @@
                                 <state key="normal" title="Upload Picture">
                                     <color key="titleColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="onUploadPictureTapped:" destination="bTp-4Z-xpJ" eventType="touchUpInside" id="1r6-sE-CV0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqB-ET-jmr">
-                                <rect key="frame" x="181.5" y="597" width="51" height="30"/>
+                                <rect key="frame" x="30" y="597" width="354" height="38"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Submit">
-                                    <color key="titleColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSubmitTapped:" destination="bTp-4Z-xpJ" eventType="touchUpInside" id="gIc-uN-0ig"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C4o-3K-7uS">
                                 <rect key="frame" x="30" y="543" width="354" height="34"/>
@@ -186,6 +193,7 @@
                             <constraint firstItem="CZv-jf-lLY" firstAttribute="leading" secondItem="5o4-lT-xJ1" secondAttribute="leading" constant="30" id="5t1-Wu-HwW"/>
                             <constraint firstItem="UgZ-BL-MSt" firstAttribute="top" secondItem="US2-DO-P6b" secondAttribute="bottom" constant="20" id="GMq-7l-Vxx"/>
                             <constraint firstItem="Zv5-Cs-de8" firstAttribute="centerX" secondItem="Hya-Ob-GOq" secondAttribute="centerX" id="Gg8-ru-tQg"/>
+                            <constraint firstItem="EqB-ET-jmr" firstAttribute="leading" secondItem="5o4-lT-xJ1" secondAttribute="leading" constant="30" id="HTY-Lk-8Iy"/>
                             <constraint firstItem="5o4-lT-xJ1" firstAttribute="trailing" secondItem="Xf1-my-tdp" secondAttribute="trailing" constant="30" id="NWW-lA-0QW"/>
                             <constraint firstItem="Xf1-my-tdp" firstAttribute="top" secondItem="CZv-jf-lLY" secondAttribute="bottom" constant="20" id="QZ9-qP-CHG"/>
                             <constraint firstItem="UgZ-BL-MSt" firstAttribute="leading" secondItem="5o4-lT-xJ1" secondAttribute="leading" constant="30" id="Qhc-oW-loc"/>
@@ -199,11 +207,20 @@
                             <constraint firstItem="CZv-jf-lLY" firstAttribute="top" secondItem="UgZ-BL-MSt" secondAttribute="bottom" constant="20" id="oru-E1-ZKq"/>
                             <constraint firstItem="EqB-ET-jmr" firstAttribute="top" secondItem="C4o-3K-7uS" secondAttribute="bottom" constant="20" id="qO9-vZ-Klz"/>
                             <constraint firstItem="5o4-lT-xJ1" firstAttribute="trailing" secondItem="UgZ-BL-MSt" secondAttribute="trailing" constant="30" id="s6b-Mf-bpZ"/>
+                            <constraint firstItem="5o4-lT-xJ1" firstAttribute="trailing" secondItem="EqB-ET-jmr" secondAttribute="trailing" constant="30" id="xqo-7L-ZEQ"/>
                             <constraint firstItem="AxG-4l-xat" firstAttribute="top" secondItem="Zv5-Cs-de8" secondAttribute="bottom" constant="50" id="y75-FZ-f1M"/>
                             <constraint firstItem="C4o-3K-7uS" firstAttribute="trailing" secondItem="Xf1-my-tdp" secondAttribute="trailing" id="yw2-TR-xpF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KrH-Of-oir"/>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="C4o-3K-7uS" id="3BL-c9-xZH"/>
+                        <outlet property="emailTextField" destination="CZv-jf-lLY" id="8PC-6c-paL"/>
+                        <outlet property="nameTextField" destination="UgZ-BL-MSt" id="bmC-7R-1Sy"/>
+                        <outlet property="passwordTextField" destination="Xf1-my-tdp" id="PnB-yt-aJr"/>
+                        <outlet property="profileImageView" destination="AxG-4l-xat" id="wOO-Kz-UWu"/>
+                        <outlet property="submitButton" destination="EqB-ET-jmr" id="kc4-du-k6B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAK-kC-Ffu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
