@@ -19,8 +19,29 @@ class CreateAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        perpareView()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    private func perpareView() {
         changePlaceholderColor()
         beautifySubmitButton()
+        assignKeyboardDelegatesToTextField()
     }
     
     private func changePlaceholderColor() {
@@ -38,10 +59,25 @@ class CreateAccountViewController: UIViewController {
         submitButton.layer.cornerRadius = 5
     }
     
+    private func assignKeyboardDelegatesToTextField() {
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
+    }
+    
     @IBAction func onUploadPictureTapped(_ sender: Any) {
     }
     
     @IBAction func onSubmitTapped(_ sender: Any) {
     }
     
+}
+
+// MARK:- Extenstion for TextField Delegate
+extension CreateAccountViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
