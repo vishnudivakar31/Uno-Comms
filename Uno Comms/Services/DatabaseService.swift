@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 class DatabaseService {
     private let db = Firestore.firestore()
     
-    public func saveUser(user: User, completionHandler: (_ error: Error?) -> ()) {
+    public func saveUser(user: AccountUser, completionHandler: (_ error: Error?) -> ()) {
         do {
             try db.collection("users").document().setData(from: user)
             completionHandler(nil)

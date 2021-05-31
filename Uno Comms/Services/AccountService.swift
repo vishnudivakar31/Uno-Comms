@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AccountDelegates {
-    func onAccountCreation(user:User?, message: String)
+    func onAccountCreation(user:AccountUser?, message: String)
 }
 
 class AccountService {
@@ -24,7 +24,7 @@ class AccountService {
                 let uid = currentUser.uid
                 self.storageService.uploadImage(imageName: uid, data: profilePictureData!) { status, url, message in
                     if let url = url {
-                        let user = User(name: name, uid: uid, profilePictureURL: url, joinedDate: Date())
+                        let user = AccountUser(name: name, uid: uid, profilePictureURL: url, joinedDate: Date())
                         self.databaseService.saveUser(user: user) { error in
                             if let error = error {
                                 self.accountDelegates?.onAccountCreation(user: nil, message: error.localizedDescription)
