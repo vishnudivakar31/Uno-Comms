@@ -16,6 +16,8 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     
+    private let authenticationService = AuthenticationService()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
