@@ -17,6 +17,10 @@
 		8B5FBFD4266420CC005052CD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */; };
 		8B6A37C8266432A300F2C4C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6A37C7266432A300F2C4C9 /* GoogleService-Info.plist */; };
 		8B6A37CA2664F92500F2C4C9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37C92664F92500F2C4C9 /* AuthenticationService.swift */; };
+		8B6A37CC26650B0F00F2C4C9 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37CB26650B0F00F2C4C9 /* AccountService.swift */; };
+		8B6A37CE26651BF900F2C4C9 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37CD26651BF900F2C4C9 /* StorageService.swift */; };
+		8B6A37D02665234100F2C4C9 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37CF2665234100F2C4C9 /* DatabaseService.swift */; };
+		8B6A37D2266525CB00F2C4C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37D1266525CB00F2C4C9 /* User.swift */; };
 		DFB2700AAFA247C694651907 /* Pods_Uno_Comms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +39,10 @@
 		8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		8B6A37C7266432A300F2C4C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B6A37C92664F92500F2C4C9 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		8B6A37CB26650B0F00F2C4C9 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		8B6A37CD26651BF900F2C4C9 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		8B6A37CF2665234100F2C4C9 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		8B6A37D1266525CB00F2C4C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uno_Comms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +105,7 @@
 		8B0D126C2663CA3500449952 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B6A37D1266525CB00F2C4C9 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -114,6 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				8B6A37C92664F92500F2C4C9 /* AuthenticationService.swift */,
+				8B6A37CB26650B0F00F2C4C9 /* AccountService.swift */,
+				8B6A37CD26651BF900F2C4C9 /* StorageService.swift */,
+				8B6A37CF2665234100F2C4C9 /* DatabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -242,11 +254,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B6A37D02665234100F2C4C9 /* DatabaseService.swift in Sources */,
 				8B5FBFD4266420CC005052CD /* CreateAccountViewController.swift in Sources */,
+				8B6A37CC26650B0F00F2C4C9 /* AccountService.swift in Sources */,
 				8B0D12592663C6E800449952 /* LoginView.swift in Sources */,
 				8B0D12552663C6E800449952 /* AppDelegate.swift in Sources */,
 				8B6A37CA2664F92500F2C4C9 /* AuthenticationService.swift in Sources */,
+				8B6A37CE26651BF900F2C4C9 /* StorageService.swift in Sources */,
 				8B0D125F2663C6E800449952 /* Uno_Comms.xcdatamodeld in Sources */,
+				8B6A37D2266525CB00F2C4C9 /* User.swift in Sources */,
 				8B0D12572663C6E800449952 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

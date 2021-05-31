@@ -16,9 +16,9 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     
+    private let activityAlertController = UIAlertController(title: "Creating your account... Please wait", message: nil, preferredStyle: .actionSheet)
     private let imagePicker = UIImagePickerController()
-    private let authenticationService = AuthenticationService()
-    
+    private let accountService = AccountService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ class CreateAccountViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         imagePicker.delegate = self
+        accountService.accountDelegates = self
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -47,6 +48,7 @@ class CreateAccountViewController: UIViewController {
     }
     
     @IBAction func onSubmitTapped(_ sender: Any) {
+        submitInfoToCreateAccount()
     }
     
     private func perpareView() {
@@ -125,6 +127,33 @@ class CreateAccountViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
     
+    private func presentInfo(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func createAccount(_ name: String, _ email: String, _ password: String, _ confirmPassword: String, _ profileImageData: Data?) {
+        if (name == "" || email == "" || password == "" || confirmPassword == "") {
+            presentInfo(title: "Warning", message: "All fields are mandatory")
+        } else if (password != confirmPassword) {
+            presentInfo(title: "Warning", message: "Passwords mismatch")
+        } else {
+            present(activityAlertController, animated: true, completion: nil)
+            accountService.createAccount(name: name, email: email, password: password, profilePictureData: profileImageData)
+        }
+    }
+    
+    private func submitInfoToCreateAccount() {
+        let name: String = nameTextField.text ?? ""
+        let email: String = emailTextField.text ?? ""
+        let password: String = passwordTextField.text ?? ""
+        let confirmPassword: String = confirmPasswordTextField.text ?? ""
+        let profileImage: Data? = profileImageView.image?.pngData()
+        createAccount(name, email, password, confirmPassword, profileImage)
+    }
+    
 }
 
 // MARK:- Extension for TextField Delegate
@@ -143,5 +172,17 @@ extension CreateAccountViewController: UIImagePickerControllerDelegate, UINaviga
         }
         profileImageView.image = image
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK:- Extension for AccountDelegates
+extension CreateAccountViewController: AccountDelegates {
+    func onAccountCreation(user: User?, message: String) {
+        activityAlertController.dismiss(animated: true, completion: nil)
+        if let _ = user {
+            self.presentInfo(title: "Account Creation", message: "Successful. Please go back and login to continue")
+        } else {
+            self.presentInfo(title: "Account Creation", message: message)
+        }
     }
 }

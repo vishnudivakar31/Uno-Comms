@@ -127,7 +127,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zv5-Cs-de8">
-                                <rect key="frame" x="89.5" y="144" width="235.5" height="41"/>
+                                <rect key="frame" x="89" y="144" width="236" height="41"/>
                                 <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="35"/>
                                 <color key="textColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
