@@ -124,7 +124,7 @@
             </objects>
             <point key="canvasLocation" x="-91" y="94"/>
         </scene>
-        <!--Item 2-->
+        <!--Settings-->
         <scene sceneID="nHt-iY-BJj">
             <objects>
                 <viewController id="HsB-Qe-kJz" sceneMemberID="viewController">
@@ -132,15 +132,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="BcO-3a-jRj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="R8b-5g-5N3"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="R8b-5g-5N3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D91-vf-KFp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1691" y="414"/>
         </scene>
-        <!--Item 1-->
+        <!--Contacts-->
         <scene sceneID="oDP-Y5-ssl">
             <objects>
                 <viewController id="GNW-Nn-gtf" sceneMemberID="viewController">
@@ -148,9 +148,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="g6e-hV-s1C"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="pzg-3i-BmJ"/>
+                    <tabBarItem key="tabBarItem" title="Contacts" image="book.fill" catalog="system" id="pzg-3i-BmJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nno-R5-6cD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -164,6 +164,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="GNW-Nn-gtf" kind="relationship" relationship="viewControllers" id="Iv7-p2-yRY"/>
@@ -296,10 +298,9 @@
     </scenes>
     <resources>
         <image name="Logo" width="170.5" height="170.5"/>
+        <image name="book.fill" catalog="system" width="128" height="102"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
