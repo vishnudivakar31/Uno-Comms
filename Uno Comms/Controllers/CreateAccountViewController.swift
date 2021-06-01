@@ -178,11 +178,12 @@ extension CreateAccountViewController: UIImagePickerControllerDelegate, UINaviga
 // MARK:- Extension for AccountDelegates
 extension CreateAccountViewController: AccountDelegates {
     func onAccountCreation(user: AccountUser?, message: String) {
-        activityAlertController.dismiss(animated: true, completion: nil)
-        if let _ = user {
-            self.presentInfo(title: "Account Creation", message: "Successful. Please go back and login to continue")
-        } else {
-            self.presentInfo(title: "Account Creation", message: message)
+        activityAlertController.dismiss(animated: true) {
+            if let _ = user {
+                self.presentInfo(title: "Account Creation", message: "Successful. Please go back and login to continue")
+            } else {
+                self.presentInfo(title: "Account Creation", message: message)
+            }
         }
     }
 }
