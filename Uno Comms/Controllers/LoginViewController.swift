@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import LocalAuthentication
 
 class LoginViewController: UIViewController {
 
@@ -19,6 +20,8 @@ class LoginViewController: UIViewController {
     
     private let activityAlertController = UIAlertController(title: "In Progress", message: "", preferredStyle: .actionSheet)
     private let loginService = LoginService()
+    
+    private let localContext = LAContext()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +52,17 @@ class LoginViewController: UIViewController {
     private func initialAuthentication() {
         fetchCredentials()
         if let credential = credential {
-            print(credential.email)
-            print(credential.password)
+            localContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Log in to your account") { success, error in
+                if let error = error {
+                    self.presentInfo(title: "Warning", msg: error.localizedDescription)
+                } else {
+                    let email = credential.email ?? ""
+                    let password = credential.password ?? ""
+                    DispatchQueue.main.async {
+                        self.loginWith(email, password)
+                    }
+                }
+            }
         }
     }
     
@@ -123,11 +135,11 @@ extension LoginViewController: LoginDelegate {
                     do {
                         try self.context.save()
                         self.fetchCredentials()
-                        self.performSegue(withIdentifier: "GoToHomeScreen", sender: self)
                     } catch {
                         self.presentInfo(title: "Warning", msg: error.localizedDescription)
                     }
                 }
+                self.performSegue(withIdentifier: "GoToHomeScreen", sender: self)
             } else {
                 self.presentInfo(title: "Warning", msg: msg)
             }
