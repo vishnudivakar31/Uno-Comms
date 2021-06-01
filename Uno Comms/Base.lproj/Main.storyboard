@@ -117,11 +117,62 @@
                         <outlet property="emailTextField" destination="yV8-MM-P4k" id="3W5-7a-Zty"/>
                         <outlet property="loginButton" destination="Nli-gT-mXt" id="1PP-Rw-4Eo"/>
                         <outlet property="passwordTextField" destination="y4e-MT-9fY" id="9qJ-76-q8W"/>
+                        <segue destination="iRb-7l-fiG" kind="presentation" identifier="GoToHomeScreen" modalPresentationStyle="fullScreen" id="N3g-n4-nLe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-91" y="94"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="nHt-iY-BJj">
+            <objects>
+                <viewController id="HsB-Qe-kJz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sFm-vN-Mwa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="BcO-3a-jRj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="R8b-5g-5N3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D91-vf-KFp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691" y="414"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="oDP-Y5-ssl">
+            <objects>
+                <viewController id="GNW-Nn-gtf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Cv-fu-WMz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="g6e-hV-s1C"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="pzg-3i-BmJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nno-R5-6cD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691" y="-193"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Wla-PM-YQM">
+            <objects>
+                <tabBarController id="iRb-7l-fiG" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8NN-7W-8je">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GNW-Nn-gtf" kind="relationship" relationship="viewControllers" id="Iv7-p2-yRY"/>
+                        <segue destination="HsB-Qe-kJz" kind="relationship" relationship="viewControllers" id="ykO-Xf-Wjs"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FpE-bQ-JnO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="108"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="3vw-Jy-g7I">
@@ -246,6 +297,9 @@
     <resources>
         <image name="Logo" width="170.5" height="170.5"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var credential: Credential?
     
     private let activityAlertController = UIAlertController(title: "In Progress", message: "", preferredStyle: .actionSheet)
     private let loginService = LoginService()
@@ -20,6 +24,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         prepareView()
         loginService.loginDelegate = self
+        initialAuthentication()
     }
 
     @IBAction func onLoginButtonTapped(_ sender: Any) {
@@ -38,6 +43,14 @@ class LoginViewController: UIViewController {
         alertController.addAction(okAction)
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    private func initialAuthentication() {
+        fetchCredentials()
+        if let credential = credential {
+            print(credential.email)
+            print(credential.password)
         }
     }
     
@@ -84,6 +97,18 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func fetchCredentials() {
+        do {
+            let resultSet:[Credential] = try context.fetch(Credential.fetchRequest())
+            if resultSet.count > 0 {
+                self.credential = resultSet.first
+            }
+        } catch {
+            self.presentInfo(title: "Warning", msg: error.localizedDescription)
+        }
+        
+    }
+    
 }
 
 // Extension for LoginDelegates
@@ -91,7 +116,18 @@ extension LoginViewController: LoginDelegate {
     func loginAttemptCallback(status: Bool, msg: String) {
         activityAlertController.dismiss(animated: true) {
             if status {
-                // TODO:- Perform Segue to move to home screen
+                if self.credential == nil {
+                    let newCredential = Credential(context: self.context)
+                    newCredential.email = self.emailTextField.text ?? ""
+                    newCredential.password = self.passwordTextField.text ?? ""
+                    do {
+                        try self.context.save()
+                        self.fetchCredentials()
+                        self.performSegue(withIdentifier: "GoToHomeScreen", sender: self)
+                    } catch {
+                        self.presentInfo(title: "Warning", msg: error.localizedDescription)
+                    }
+                }
             } else {
                 self.presentInfo(title: "Warning", msg: msg)
             }

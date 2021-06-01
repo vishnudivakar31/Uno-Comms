@@ -28,4 +28,5 @@ class LoginService {
             self.loginDelegate?.resetPasswordCallback(status: status, msg: msg)
         }
     }
+    
 }
