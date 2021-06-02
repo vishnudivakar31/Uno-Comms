@@ -61,4 +61,16 @@ class AuthenticationService {
             }
         }
     }
+    
+    public func sendPasswordResetEmail(completionHandler: @escaping (_ status: Bool, _ msg: String) -> ()) {
+        if let user = getCurrentUser() {
+            Auth.auth().sendPasswordReset(withEmail: user.email ?? "") { error in
+                if let error = error {
+                    completionHandler(false, error.localizedDescription)
+                } else {
+                    completionHandler(true, "password reset email send.")
+                }
+            }
+        }
+    }
 }

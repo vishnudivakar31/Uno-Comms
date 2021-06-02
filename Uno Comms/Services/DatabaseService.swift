@@ -35,4 +35,14 @@ class DatabaseService {
             }
         }
     }
+    
+    public func updateUser(user: AccountUser, completionHandler: @escaping (_ user: AccountUser?, _ error: Error?) -> ()) {
+        do {
+            try db.collection(USER_COLLECTION).document(user.id ?? "").setData(from: user)
+            completionHandler(user, nil)
+        } catch let error {
+            completionHandler(nil, error)
+        }
+        
+    }
 }

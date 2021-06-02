@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     private var userAccount: AccountUser?
     private let settingsService = SettingsService()
     private let imagePicker = UIImagePickerController()
+    private let activityAlert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,8 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onRequestPasswordTapped(_ sender: Any) {
+        presentActivityAlert(title: "Please wait", msg: "requesting password reset....")
+        settingsService.sendPasswordReset()
     }
     
     @IBAction func onDisableAccountTapped(_ sender: Any) {
@@ -83,10 +86,33 @@ class SettingsViewController: UIViewController {
         }
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    private func presentActivityAlert(title: String, msg: String) {
+        activityAlert.title = title
+        activityAlert.message = msg
+        present(activityAlert, animated: true, completion: nil)
+    }
 }
 
 // MARK:- Extension settings delegate
 extension SettingsViewController: SettingsDelegate {
+    func sendPasswordReset(status: Bool, msg: String) {
+        activityAlert.dismiss(animated: true) {
+            self.presentInfo(title: "Password Reset Request", message: msg)
+        }
+    }
+    
+    func updateProfilePicture(user: AccountUser?, status: Bool, msg: String) {
+        activityAlert.dismiss(animated: true) {
+            if status {
+                self.userAccount = user!
+                self.presentInfo(title: "Update Profile Picture", message: "Successfully updated")
+            } else {
+                self.presentInfo(title: "Warning", message: msg)
+            }
+        }
+    }
+    
     func getUserAccountCallback(user: AccountUser?, error: Error?) {
         if let error = error {
             self.presentInfo(title: "Warning", message: error.localizedDescription)
@@ -122,6 +148,11 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
             fatalError("Expected an image, but was provided with \(info)")
         }
         profilePicture.image = image
-        picker.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true) {
+            if let userAccount = self.userAccount, let imageData = image.pngData() {
+                self.presentActivityAlert(title: "Please wait", msg: "uploading your profile picture. please wait")
+                self.settingsService.updateProfilePicture(userAccount: userAccount, data: imageData)
+            }
+        }
     }
 }
