@@ -15,15 +15,18 @@ class SettingsViewController: UIViewController {
     
     private var userAccount: AccountUser?
     private let settingsService = SettingsService()
+    private let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsService.settingsDelegate = self
         beautifyProfilePicture()
         settingsService.getUserAccount()
+        imagePicker.delegate = self
     }
     
     @IBAction func onUploadPictureTapped(_ sender: Any) {
+        getPicture()
     }
     
     @IBAction func onChangeNameTapped(_ sender: Any) {
@@ -49,6 +52,36 @@ class SettingsViewController: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func getPicture() {
+        let alertController = UIAlertController(title: "Select Media", message: "You can select a photo from your photos or you can snap a photo now.", preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { alertAction in
+            self.pickImage(source: "camera")
+        }
+        
+        let photoAction = UIAlertAction(title: "Photos", style: .default) { alertAction in
+            self.pickImage(source: "photos")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(cameraAction)
+        alertController.addAction(photoAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func pickImage(source: String) {
+        imagePicker.allowsEditing = true
+        if source == "camera" {
+            imagePicker.sourceType = .camera
+        } else {
+            imagePicker.sourceType = .photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
@@ -79,5 +112,16 @@ extension SettingsViewController: SettingsDelegate {
         } else {
             self.presentInfo(title: "Warning", message: "no valid user account found. try again later.")
         }
+    }
+}
+
+// MARK:- Extension for ImagePicker
+extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            fatalError("Expected an image, but was provided with \(info)")
+        }
+        profilePicture.image = image
+        picker.dismiss(animated: true, completion: nil)
     }
 }
