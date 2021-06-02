@@ -199,9 +199,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfL-Zo-Nlk">
-                                                <rect key="frame" x="0.0" y="104" width="155" height="22"/>
+                                                <rect key="frame" x="0.0" y="104" width="148" height="22"/>
                                                 <color key="tintColor" red="1" green="0.0" blue="0.037429042760000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" title="Disable account" image="pip.remove" catalog="system">
+                                                <state key="normal" title="Delete account" image="pip.remove" catalog="system">
                                                     <color key="titleColor" red="1" green="0.0" blue="0.037429042760000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
@@ -246,6 +246,7 @@
                         <outlet property="backgroundView" destination="7b6-1I-oAT" id="cyH-bL-Qeo"/>
                         <outlet property="nameLabel" destination="Tie-MY-4k0" id="N21-h5-c9A"/>
                         <outlet property="profilePicture" destination="Z2x-VP-Yar" id="Vmk-25-vKW"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="PerformLogout" modalPresentationStyle="fullScreen" id="fW8-8n-6Qb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D91-vf-KFp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -317,12 +318,11 @@
                         <segue destination="WRF-4f-7W1" kind="relationship" relationship="viewControllers" id="iQO-PY-eP1"/>
                         <segue destination="7TK-Ci-zRk" kind="relationship" relationship="viewControllers" id="pfc-Fb-4a8"/>
                         <segue destination="HsB-Qe-kJz" kind="relationship" relationship="viewControllers" id="ykO-Xf-Wjs"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="Logout" modalPresentationStyle="fullScreen" id="tcV-OE-XeC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FpE-bQ-JnO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="803" y="108"/>
+            <point key="canvasLocation" x="793" y="-194"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="3vw-Jy-g7I">
@@ -445,7 +445,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tcV-OE-XeC"/>
+        <segue reference="fW8-8n-6Qb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Logo" width="170.5" height="170.5"/>

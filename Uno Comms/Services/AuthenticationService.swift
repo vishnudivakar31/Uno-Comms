@@ -73,4 +73,26 @@ class AuthenticationService {
             }
         }
     }
+    
+    public func disableAccount(completionHandler: @escaping (_ status: Bool, _ msg: String) -> ()) {
+        if let user = getCurrentUser() {
+            user.delete { error in
+                if let error = error {
+                    completionHandler(false, error.localizedDescription)
+                } else {
+                    completionHandler(true, "delete account successfully.")
+                }
+            }
+        }
+    }
+    
+    public func logout(completionHandler: @escaping (_ status: Bool, _ msg: String) -> ()) {
+        do {
+            try Auth.auth().signOut()
+            completionHandler(true, "logout successfull.")
+        } catch {
+            completionHandler(false, error.localizedDescription)
+        }
+        
+    }
 }

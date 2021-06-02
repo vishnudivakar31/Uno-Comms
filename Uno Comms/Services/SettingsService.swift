@@ -11,6 +11,8 @@ protocol SettingsDelegate {
     func getUserAccountCallback(user: AccountUser?, error: Error?)
     func updateProfilePicture(user: AccountUser?, status: Bool, msg: String)
     func sendPasswordReset(status: Bool, msg: String)
+    func deleteAccountCallback(status: Bool, msg: String)
+    func logoutCallback(status: Bool, msg: String)
 }
 
 class SettingsService {
@@ -53,6 +55,20 @@ class SettingsService {
     public func sendPasswordReset() {
         authenticationService.sendPasswordResetEmail { status, msg in
             self.settingsDelegate?.sendPasswordReset(status: status, msg: msg)
+        }
+    }
+    
+    public func disableAccount() {
+        authenticationService.disableAccount { status, msg in
+            self.authenticationService.logout { status1, msg1 in
+                self.settingsDelegate?.deleteAccountCallback(status: status && status1, msg: "\(msg) \(msg1)")
+            }
+        }
+    }
+    
+    public func logout() {
+        authenticationService.logout { status, msg in
+            self.settingsDelegate?.logoutCallback(status: status, msg: msg)
         }
     }
 }

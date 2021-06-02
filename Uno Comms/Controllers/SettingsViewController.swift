@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import CoreData
 
 class SettingsViewController: UIViewController {
 
@@ -18,13 +20,26 @@ class SettingsViewController: UIViewController {
     private let imagePicker = UIImagePickerController()
     private let activityAlert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
     
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var credential: Credential?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsService.settingsDelegate = self
         beautifyProfilePicture()
         settingsService.getUserAccount()
         imagePicker.delegate = self
+        
+        do {
+            let results: [Credential] = try context.fetch(Credential.fetchRequest())
+            if results.count > 0 {
+                credential = results.first
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
+    
     
     @IBAction func onUploadPictureTapped(_ sender: Any) {
         getPicture()
@@ -39,9 +54,13 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onDisableAccountTapped(_ sender: Any) {
+        presentActivityAlert(title: "Please wait", msg: "deleting account...")
+        settingsService.disableAccount()
     }
     
     @IBAction func onLogoutTapped(_ sender: Any) {
+        presentActivityAlert(title: "Please wait", msg: "logging out....")
+        settingsService.logout()
     }
     
     private func beautifyProfilePicture() {
@@ -96,6 +115,32 @@ class SettingsViewController: UIViewController {
 
 // MARK:- Extension settings delegate
 extension SettingsViewController: SettingsDelegate {
+    func logoutCallback(status: Bool, msg: String) {
+        activityAlert.dismiss(animated: true) {
+            if status {
+                if let credential = self.credential {
+                    self.context.delete(credential)
+                }
+                self.performSegue(withIdentifier: "PerformLogout", sender: self)
+            } else {
+                self.presentInfo(title: "Logout", message: msg)
+            }
+        }
+    }
+    
+    func deleteAccountCallback(status: Bool, msg: String) {
+        activityAlert.dismiss(animated: true) {
+            if status {
+                if let credential = self.credential {
+                    self.context.delete(credential)
+                }
+                self.performSegue(withIdentifier: "PerformLogout", sender: self)
+            } else {
+                self.presentInfo(title: "Account Deletion", message: msg)
+            }
+        }
+    }
+    
     func sendPasswordReset(status: Bool, msg: String) {
         activityAlert.dismiss(animated: true) {
             self.presentInfo(title: "Password Reset Request", message: msg)
