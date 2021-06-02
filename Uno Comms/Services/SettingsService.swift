@@ -13,6 +13,7 @@ protocol SettingsDelegate {
     func sendPasswordReset(status: Bool, msg: String)
     func deleteAccountCallback(status: Bool, msg: String)
     func logoutCallback(status: Bool, msg: String)
+    func updateNameCallback(user: AccountUser?, error: Error?)
 }
 
 class SettingsService {
@@ -69,6 +70,13 @@ class SettingsService {
     public func logout() {
         authenticationService.logout { status, msg in
             self.settingsDelegate?.logoutCallback(status: status, msg: msg)
+        }
+    }
+    
+    public func updateName(name: String, userAccount: AccountUser) {
+        let updatedUserAccount = AccountUser(id: userAccount.id, name: name, uid: userAccount.uid, profilePictureURL: userAccount.profilePictureURL, joinedDate: userAccount.joinedDate)
+        databaseService.updateUser(user: updatedUserAccount) { updatedUserAccount, error in
+            self.settingsDelegate?.updateNameCallback(user: updatedUserAccount, error: error)
         }
     }
 }

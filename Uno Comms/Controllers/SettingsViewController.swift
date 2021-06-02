@@ -46,6 +46,20 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onChangeNameTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: "Change Name", message: "", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "New name"
+        }
+        let changeAction = UIAlertAction(title: "Change", style: .default) { _ in
+            let textField = alertController.textFields?.first
+            if let userAccount = self.userAccount {
+                self.settingsService.updateName(name: textField?.text ?? "", userAccount: userAccount)
+                self.presentActivityAlert(title: "Change Name", msg: "update name is progressing....")
+            }
+        }
+        alertController.addAction(changeAction)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func onRequestPasswordTapped(_ sender: Any) {
@@ -115,6 +129,20 @@ class SettingsViewController: UIViewController {
 
 // MARK:- Extension settings delegate
 extension SettingsViewController: SettingsDelegate {
+    func updateNameCallback(user: AccountUser?, error: Error?) {
+        activityAlert.dismiss(animated: true) {
+            if let error = error {
+                self.presentInfo(title: "Change Name", message: error.localizedDescription)
+            } else if let user = user {
+                self.userAccount = user
+                self.nameLabel.text = user.name
+                self.presentInfo(title: "Change Name", message: "updated.")
+            } else {
+                self.presentInfo(title: "Change Name", message: "failed.. try again later")
+            }
+        }
+    }
+    
     func logoutCallback(status: Bool, msg: String) {
         activityAlert.dismiss(animated: true) {
             if status {
