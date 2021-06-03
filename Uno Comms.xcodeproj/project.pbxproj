@@ -25,6 +25,8 @@
 		8B6A37D72667B60800F2C4C9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37D62667B60800F2C4C9 /* HomeTabBarController.swift */; };
 		8B6A37D92667B6DB00F2C4C9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37D82667B6DB00F2C4C9 /* SettingsViewController.swift */; };
 		8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B9102667BF5F0004088E /* SettingsService.swift */; };
+		8BD3B914266909130004088E /* SharedCommsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */; };
+		8BD3B915266909130004088E /* SharedCommsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */; };
 		DFB2700AAFA247C694651907 /* Pods_Uno_Comms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		8B6A37D62667B60800F2C4C9 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		8B6A37D82667B6DB00F2C4C9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8BD3B9102667BF5F0004088E /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsTableViewCell.swift; sourceTree = "<group>"; };
+		8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCommsTableViewCell.xib; sourceTree = "<group>"; };
 		FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uno_Comms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -96,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				8B6A37D326665BF700F2C4C9 /* Controllers */,
-				8B6A37C7266432A300F2C4C9 /* GoogleService-Info.plist */,
 				8B0D126E2663CA4E00449952 /* Services */,
 				8B0D126D2663CA3C00449952 /* Views */,
 				8B0D126C2663CA3500449952 /* Models */,
@@ -107,6 +110,7 @@
 				8B0D12622663C6E900449952 /* LaunchScreen.storyboard */,
 				8B0D12652663C6E900449952 /* Info.plist */,
 				8B0D125D2663C6E800449952 /* Uno_Comms.xcdatamodeld */,
+				8B6A37C7266432A300F2C4C9 /* GoogleService-Info.plist */,
 			);
 			path = "Uno Comms";
 			sourceTree = "<group>";
@@ -122,6 +126,8 @@
 		8B0D126D2663CA3C00449952 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */,
+				8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -222,6 +228,7 @@
 				8B6A37C8266432A300F2C4C9 /* GoogleService-Info.plist in Resources */,
 				8B0D12612663C6E900449952 /* Assets.xcassets in Resources */,
 				8B0D125C2663C6E800449952 /* Main.storyboard in Resources */,
+				8BD3B915266909130004088E /* SharedCommsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +295,7 @@
 				8B6A37D2266525CB00F2C4C9 /* AccountUser.swift in Sources */,
 				8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */,
 				8B0D12572663C6E800449952 /* SceneDelegate.swift in Sources */,
+				8BD3B914266909130004088E /* SharedCommsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
