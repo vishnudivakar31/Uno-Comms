@@ -27,6 +27,8 @@
 		8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B9102667BF5F0004088E /* SettingsService.swift */; };
 		8BD3B914266909130004088E /* SharedCommsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */; };
 		8BD3B915266909130004088E /* SharedCommsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */; };
+		8BD3B91726690F360004088E /* COMMS_TYPE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91626690F360004088E /* COMMS_TYPE.swift */; };
+		8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91826690FFE0004088E /* SharedComm.swift */; };
 		DFB2700AAFA247C694651907 /* Pods_Uno_Comms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		8BD3B9102667BF5F0004088E /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsTableViewCell.swift; sourceTree = "<group>"; };
 		8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCommsTableViewCell.xib; sourceTree = "<group>"; };
+		8BD3B91626690F360004088E /* COMMS_TYPE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COMMS_TYPE.swift; sourceTree = "<group>"; };
+		8BD3B91826690FFE0004088E /* SharedComm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComm.swift; sourceTree = "<group>"; };
 		FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uno_Comms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				8B6A37D1266525CB00F2C4C9 /* AccountUser.swift */,
+				8BD3B91626690F360004088E /* COMMS_TYPE.swift */,
+				8BD3B91826690FFE0004088E /* SharedComm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,11 +293,13 @@
 				8B6A37CC26650B0F00F2C4C9 /* AccountService.swift in Sources */,
 				8B0D12592663C6E800449952 /* LoginViewController.swift in Sources */,
 				8B0D12552663C6E800449952 /* AppDelegate.swift in Sources */,
+				8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */,
 				8B6A37CA2664F92500F2C4C9 /* AuthenticationService.swift in Sources */,
 				8B6A37D526665DD900F2C4C9 /* LoginService.swift in Sources */,
 				8B6A37CE26651BF900F2C4C9 /* StorageService.swift in Sources */,
 				8B0D125F2663C6E800449952 /* Uno_Comms.xcdatamodeld in Sources */,
 				8B6A37D92667B6DB00F2C4C9 /* SettingsViewController.swift in Sources */,
+				8BD3B91726690F360004088E /* COMMS_TYPE.swift in Sources */,
 				8B6A37D2266525CB00F2C4C9 /* AccountUser.swift in Sources */,
 				8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */,
 				8B0D12572663C6E800449952 /* SceneDelegate.swift in Sources */,
