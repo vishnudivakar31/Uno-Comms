@@ -55,6 +55,9 @@
                                         <state key="normal" title="Shared">
                                             <color key="titleColor" red="0.16066528350000001" green="0.59188711760000001" blue="0.36853560880000003" alpha="0.8980392157" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onSharedButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Zo-3K-SRg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXv-KL-Knc">
                                         <rect key="frame" x="74" y="0.0" width="65" height="30"/>
@@ -63,6 +66,9 @@
                                         <state key="normal" title="Delete" image="xmark.bin.circle.fill" catalog="system">
                                             <color key="titleColor" red="0.6069023013" green="0.1105789021" blue="0.12151367220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onDeleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rdU-Bw-Qih"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -88,6 +94,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="commIdentifier" destination="6Eb-Y4-NcR" id="WeZ-cO-zvg"/>
+                <outlet property="commLogo" destination="eg7-d5-NBa" id="Hbf-69-Fcl"/>
+                <outlet property="identifierLabel" destination="nD0-K7-fVA" id="XdZ-MW-a6j"/>
+            </connections>
             <point key="canvasLocation" x="76.811594202898561" y="121.20535714285714"/>
         </tableViewCell>
     </objects>
