@@ -273,7 +273,7 @@
         <!--Shared Comms-->
         <scene sceneID="MDQ-Ux-oG0">
             <objects>
-                <viewController id="WRF-4f-7W1" sceneMemberID="viewController">
+                <viewController id="WRF-4f-7W1" customClass="SharedCommsViewController" customModule="Uno_Comms" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sm5-Vx-Tvr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,13 +282,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Comms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gow-XC-t7d">
-                                        <rect key="frame" x="20" y="58.5" width="136" height="21.5"/>
+                                        <rect key="frame" x="10" y="58.5" width="136" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <color key="textColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-Al-HBD">
-                                        <rect key="frame" x="275" y="58" width="119" height="22"/>
+                                        <rect key="frame" x="285" y="58" width="119" height="22"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h20-m5-9v8">
                                                 <rect key="frame" x="0.0" y="0.0" width="119" height="22"/>
@@ -297,6 +297,9 @@
                                                 <state key="normal" title="Add Comms" image="plus" catalog="system">
                                                     <color key="titleColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onAddCommsTapped:" destination="WRF-4f-7W1" eventType="touchUpInside" id="ARq-EE-RGP"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -305,10 +308,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="0C4-1Z-Jq7"/>
                                     <constraint firstItem="2fp-Al-HBD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gow-XC-t7d" secondAttribute="trailing" constant="8" symbolic="YES" id="3zP-fF-4zg"/>
-                                    <constraint firstItem="gow-XC-t7d" firstAttribute="leading" secondItem="c7q-4b-Ldy" secondAttribute="leading" constant="20" id="4x4-Nm-AEO"/>
+                                    <constraint firstItem="gow-XC-t7d" firstAttribute="leading" secondItem="c7q-4b-Ldy" secondAttribute="leading" constant="10" id="4x4-Nm-AEO"/>
                                     <constraint firstAttribute="bottom" secondItem="2fp-Al-HBD" secondAttribute="bottom" constant="20" id="WRw-Ik-jhq"/>
                                     <constraint firstAttribute="bottom" secondItem="gow-XC-t7d" secondAttribute="bottom" constant="20" id="gIx-Si-fFl"/>
-                                    <constraint firstAttribute="trailing" secondItem="2fp-Al-HBD" secondAttribute="trailing" constant="20" id="nDT-tW-1lI"/>
+                                    <constraint firstAttribute="trailing" secondItem="2fp-Al-HBD" secondAttribute="trailing" constant="10" id="nDT-tW-1lI"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1RQ-KY-wOd">
@@ -318,6 +321,16 @@
                                 <color key="sectionIndexColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SharedCommsTableViewCell" id="Sk6-FA-T1k">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sk6-FA-T1k" id="9Ru-ZQ-gr2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VLA-yN-Lmb"/>
@@ -333,6 +346,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Shared Comms" image="network" catalog="system" id="1An-ld-ElP"/>
+                    <connections>
+                        <outlet property="tableView" destination="1RQ-KY-wOd" id="uWX-Dz-Npq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEl-7H-qaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

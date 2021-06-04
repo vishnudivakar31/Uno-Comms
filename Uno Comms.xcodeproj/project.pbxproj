@@ -29,6 +29,7 @@
 		8BD3B915266909130004088E /* SharedCommsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */; };
 		8BD3B91726690F360004088E /* COMMS_TYPE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91626690F360004088E /* COMMS_TYPE.swift */; };
 		8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91826690FFE0004088E /* SharedComm.swift */; };
+		8BD3B91B26691BA00004088E /* SharedCommsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */; };
 		DFB2700AAFA247C694651907 /* Pods_Uno_Comms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCommsTableViewCell.xib; sourceTree = "<group>"; };
 		8BD3B91626690F360004088E /* COMMS_TYPE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COMMS_TYPE.swift; sourceTree = "<group>"; };
 		8BD3B91826690FFE0004088E /* SharedComm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComm.swift; sourceTree = "<group>"; };
+		8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsViewController.swift; sourceTree = "<group>"; };
 		FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uno_Comms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 				8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */,
 				8B6A37D62667B60800F2C4C9 /* HomeTabBarController.swift */,
 				8B6A37D82667B6DB00F2C4C9 /* SettingsViewController.swift */,
+				8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				8B6A37D72667B60800F2C4C9 /* HomeTabBarController.swift in Sources */,
 				8B6A37CC26650B0F00F2C4C9 /* AccountService.swift in Sources */,
 				8B0D12592663C6E800449952 /* LoginViewController.swift in Sources */,
+				8BD3B91B26691BA00004088E /* SharedCommsViewController.swift in Sources */,
 				8B0D12552663C6E800449952 /* AppDelegate.swift in Sources */,
 				8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */,
 				8B6A37CA2664F92500F2C4C9 /* AuthenticationService.swift in Sources */,
