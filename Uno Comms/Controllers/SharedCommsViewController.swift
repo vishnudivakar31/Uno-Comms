@@ -16,9 +16,14 @@ class SharedCommsViewController: UIViewController {
     private var facebookPresent: Bool = false
     private var instagramPresent: Bool = false
     private var linkedinPresent: Bool = false
+    private var whatsappPresent: Bool = false
+    
+    private let sharedCommsService = SharedCommsService()
+    private let activityAlert = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sharedCommsService.commsDelegate = self
         let nib = UINib(nibName: "SharedCommsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "SharedCommsTableViewCell")
         tableView.dataSource = self
@@ -26,6 +31,9 @@ class SharedCommsViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.backgroundColor = #colorLiteral(red: 0.8680856228, green: 0.9031531811, blue: 0.9152787924, alpha: 1)
         tableView.rowHeight = 60.0
+        
+        presentActivityAlert(title: "Please wait", msg: "fetching your shared comms...")
+        sharedCommsService.getAllSharedComms()
     }
     
     @IBAction func onAddCommsTapped(_ sender: Any) {
@@ -45,6 +53,9 @@ class SharedCommsViewController: UIViewController {
         let linkedinAction = UIAlertAction(title: "LinkedIn", style: .default) { _ in
             self.getIdentifier(commType: COMMS_TYPE.LINKEDIN)
         }
+        let whatsappAction = UIAlertAction(title: "WhatsApp", style: .default) { _ in
+            self.getIdentifier(commType: .WHATSAPP)
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(phonenumberAction)
         alertController.addAction(emailAction)
@@ -62,6 +73,10 @@ class SharedCommsViewController: UIViewController {
             alertController.addAction(linkedinAction)
         }
         
+        if !whatsappPresent {
+            alertController.addAction(whatsappAction)
+        }
+        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -72,8 +87,11 @@ class SharedCommsViewController: UIViewController {
         }
         let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
             let textField = alertController.textFields!.first
-            print(textField?.text ?? "")
-            // TODO:- Save shared comms
+            if let uid = self.sharedCommsService.getUserID() {
+                let sharedComm = SharedComm(uid: uid, commType: commType, identifier: textField?.text ?? "", shared: true)
+                self.presentActivityAlert(title: "Save Shared Comms", msg: "saving shared comms to cloud. please wait..")
+                self.sharedCommsService.saveSharedComm(sharedComm: sharedComm)
+            }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(submitAction)
@@ -81,6 +99,30 @@ class SharedCommsViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    private func presentActivityAlert(title: String, msg: String) {
+        activityAlert.title = title
+        activityAlert.message = msg
+        present(activityAlert, animated: true, completion: nil)
+    }
+    
+    private func presentInfo(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func checkCommTypeForPresence(sharedComm: SharedComm) {
+        if sharedComm.commType == .FACEBOOK {
+            self.facebookPresent = self.facebookPresent || true
+        } else if sharedComm.commType == .INSTAGRAM {
+            self.instagramPresent = self.instagramPresent || true
+        } else if sharedComm.commType == .LINKEDIN {
+            self.linkedinPresent = self.linkedinPresent || true
+        } else if sharedComm.commType == .WHATSAPP {
+            self.whatsappPresent = self.whatsappPresent || true
         }
     }
     
@@ -103,5 +145,42 @@ extension SharedCommsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.drawCell()
         
         return cell
+    }
+}
+
+// Extension for CommsDelegate
+extension SharedCommsViewController: CommsDelegate {
+    func getAllSharedCommsCallback(shareComms: [SharedComm]?, error: Error?) {
+        activityAlert.dismiss(animated: true) {
+            if let error = error {
+                self.presentInfo(title: "Getting saved shared comms", msg: error.localizedDescription)
+            } else if let shareComms = shareComms {
+                DispatchQueue.main.async {
+                    self.sharedComms = shareComms
+                    for sharedComm in self.sharedComms {
+                        self.checkCommTypeForPresence(sharedComm: sharedComm)
+                    }
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.presentInfo(title: "Saved shared comms", msg: "not available")
+            }
+        }
+    }
+    
+    func saveSharedCommCallback(sharedComm: SharedComm?, error: Error?) {
+        activityAlert.dismiss(animated: true) {
+            if let error = error {
+                self.presentInfo(title: "Save shared comm", msg: error.localizedDescription)
+            } else if let sharedComm = sharedComm {
+                DispatchQueue.main.async {
+                    self.sharedComms.append(sharedComm)
+                    self.checkCommTypeForPresence(sharedComm: sharedComm)
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.presentInfo(title: "Save shared comm", msg: "shared comm not available.")
+            }
+        }
     }
 }

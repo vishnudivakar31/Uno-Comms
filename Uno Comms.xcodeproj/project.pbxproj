@@ -30,6 +30,7 @@
 		8BD3B91726690F360004088E /* COMMS_TYPE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91626690F360004088E /* COMMS_TYPE.swift */; };
 		8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91826690FFE0004088E /* SharedComm.swift */; };
 		8BD3B91B26691BA00004088E /* SharedCommsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */; };
+		8BD3B91D266BC1180004088E /* SharedCommsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91C266BC1180004088E /* SharedCommsService.swift */; };
 		DFB2700AAFA247C694651907 /* Pods_Uno_Comms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		8BD3B91626690F360004088E /* COMMS_TYPE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COMMS_TYPE.swift; sourceTree = "<group>"; };
 		8BD3B91826690FFE0004088E /* SharedComm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComm.swift; sourceTree = "<group>"; };
 		8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsViewController.swift; sourceTree = "<group>"; };
+		8BD3B91C266BC1180004088E /* SharedCommsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsService.swift; sourceTree = "<group>"; };
 		FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uno_Comms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 				8B6A37CF2665234100F2C4C9 /* DatabaseService.swift */,
 				8B6A37D426665DD900F2C4C9 /* LoginService.swift */,
 				8BD3B9102667BF5F0004088E /* SettingsService.swift */,
+				8BD3B91C266BC1180004088E /* SharedCommsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD3B91D266BC1180004088E /* SharedCommsService.swift in Sources */,
 				8B6A37D02665234100F2C4C9 /* DatabaseService.swift in Sources */,
 				8B5FBFD4266420CC005052CD /* CreateAccountViewController.swift in Sources */,
 				8B6A37D72667B60800F2C4C9 /* HomeTabBarController.swift in Sources */,
