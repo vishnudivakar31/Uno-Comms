@@ -31,19 +31,19 @@ class SharedCommsViewController: UIViewController {
     @IBAction func onAddCommsTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "Comms Type", message: "Please select comms type. Only one handler per Facebook, Instagram and LinkedIn", preferredStyle: .actionSheet)
         let phonenumberAction = UIAlertAction(title: "Phone Number", style: .default) { _ in
-            // TODO:- Phone Number Action
+            self.getIdentifier(commType: COMMS_TYPE.TELEPHONE)
         }
         let emailAction = UIAlertAction(title: "Email", style: .default) { _ in
-            // TODO:- Email Action
+            self.getIdentifier(commType: COMMS_TYPE.EMAIL)
         }
         let facebookAction = UIAlertAction(title: "Facebook", style: .default) { _ in
-            // TODO:- Facebook action
+            self.getIdentifier(commType: COMMS_TYPE.FACEBOOK)
         }
         let instagramAction = UIAlertAction(title: "Instagram", style: .default) { _ in
-            // TODO:- Instagram action
+            self.getIdentifier(commType: COMMS_TYPE.INSTAGRAM)
         }
         let linkedinAction = UIAlertAction(title: "LinkedIn", style: .default) { _ in
-            // TODO:- LinkedIn action
+            self.getIdentifier(commType: COMMS_TYPE.LINKEDIN)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(phonenumberAction)
@@ -63,6 +63,25 @@ class SharedCommsViewController: UIViewController {
         }
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func getIdentifier(commType: COMMS_TYPE) {
+        let alertController = UIAlertController(title: "Enter the identifier", message: "", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "handler"
+        }
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
+            let textField = alertController.textFields!.first
+            print(textField?.text ?? "")
+            // TODO:- Save shared comms
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(submitAction)
+        alertController.addAction(cancelAction)
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
 }
