@@ -12,15 +12,10 @@ class SharedCommsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var sharedComms:[SharedComm] = [
-        SharedComm(uid: "12123", commType: .EMAIL, identifier: "vishnudivakar31@gmail.com", shared: true),
-        SharedComm(uid: "12123", commType: .EMAIL, identifier: "vd276@njit.edu", shared: true),
-        SharedComm(uid: "12123", commType: .WHATSAPP, identifier: "551-280-7162", shared: false),
-        SharedComm(uid: "12123", commType: .TELEPHONE, identifier: "551-280-7162", shared: true),
-        SharedComm(uid: "12123", commType: .TELEPHONE, identifier: "9447319349", shared: true),
-        SharedComm(uid: "12123", commType: .FACEBOOK, identifier: "vishnu.divakar.71", shared: true),
-        SharedComm(uid: "12123", commType: .INSTAGRAM, identifier: "wanderingthinkter", shared: false),
-    ]
+    private var sharedComms:[SharedComm] = []
+    private var facebookPresent: Bool = false
+    private var instagramPresent: Bool = false
+    private var linkedinPresent: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +29,40 @@ class SharedCommsViewController: UIViewController {
     }
     
     @IBAction func onAddCommsTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: "Comms Type", message: "Please select comms type. Only one handler per Facebook, Instagram and LinkedIn", preferredStyle: .actionSheet)
+        let phonenumberAction = UIAlertAction(title: "Phone Number", style: .default) { _ in
+            // TODO:- Phone Number Action
+        }
+        let emailAction = UIAlertAction(title: "Email", style: .default) { _ in
+            // TODO:- Email Action
+        }
+        let facebookAction = UIAlertAction(title: "Facebook", style: .default) { _ in
+            // TODO:- Facebook action
+        }
+        let instagramAction = UIAlertAction(title: "Instagram", style: .default) { _ in
+            // TODO:- Instagram action
+        }
+        let linkedinAction = UIAlertAction(title: "LinkedIn", style: .default) { _ in
+            // TODO:- LinkedIn action
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(phonenumberAction)
+        alertController.addAction(emailAction)
+        alertController.addAction(cancelAction)
+        
+        if !facebookPresent {
+            alertController.addAction(facebookAction)
+        }
+        
+        if !instagramPresent {
+            alertController.addAction(instagramAction)
+        }
+        
+        if !linkedinPresent {
+            alertController.addAction(linkedinAction)
+        }
+        
+        present(alertController, animated: true, completion: nil)
     }
     
 }
