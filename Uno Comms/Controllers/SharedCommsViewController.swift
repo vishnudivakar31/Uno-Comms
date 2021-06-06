@@ -126,6 +126,44 @@ class SharedCommsViewController: UIViewController {
         }
     }
     
+    private func unCheckCommTypeForPresence(sharedComm: SharedComm) {
+        if sharedComm.commType == .FACEBOOK {
+            self.facebookPresent = false
+        } else if sharedComm.commType == .INSTAGRAM {
+            self.instagramPresent = false
+        } else if sharedComm.commType == .LINKEDIN {
+            self.linkedinPresent = false
+        } else if sharedComm.commType == .WHATSAPP {
+            self.whatsappPresent = false
+        }
+    }
+    
+    private func performTableOption(sharedComm: SharedComm, indexPath: IndexPath, option: String) {
+        if option == "share" {
+            let updatedSharedComm = SharedComm(id: sharedComm.id, uid: sharedComm.uid, commType: sharedComm.commType, identifier: sharedComm.identifier, shared: !sharedComm.shared)
+            sharedCommsService.updateSharedComm(sharedComm: updatedSharedComm, indexPath: indexPath)
+        } else {
+            sharedCommsService.deleteSharedComms(sharedComm: sharedComm, indexPath: indexPath)
+        }
+    }
+    
+    private func presentTableOptions(sharedComm: SharedComm, indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "Options", message: "Are you sure?", preferredStyle: .actionSheet)
+        let shareAction = UIAlertAction(title: sharedComm.shared ? "Unshare" : "Share", style: .default) { _ in
+            self.presentActivityAlert(title: "Please wait", msg: "Updating your shared comm...")
+            self.performTableOption(sharedComm: sharedComm, indexPath: indexPath, option: "share")
+        }
+        let deleteAction = UIAlertAction(title: "Delete", style: .default) { _ in
+            self.presentActivityAlert(title: "Please wait", msg: "Deleting your shared comm...")
+            self.performTableOption(sharedComm: sharedComm, indexPath: indexPath, option: "delete")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(shareAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 // Extension for UITableViewDelegate
@@ -141,15 +179,49 @@ extension SharedCommsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.documentID = sharedComm.id
         cell.commLogoImage = UIImage(named: sharedComm.commType.rawValue)
         cell.shared = sharedComm.shared
-        
         cell.drawCell()
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sharedComm = sharedComms[indexPath.row]
+        presentTableOptions(sharedComm: sharedComm, indexPath: indexPath)
     }
 }
 
 // Extension for CommsDelegate
 extension SharedCommsViewController: CommsDelegate {
+    func deleteSharedCommCallback(shareComm: SharedComm?, error: Error?, indexPath: IndexPath) {
+        activityAlert.dismiss(animated: true) {
+            if let error = error {
+                self.presentInfo(title: "Delete shared comm", msg: error.localizedDescription)
+            } else if let shareComm = shareComm {
+                DispatchQueue.main.async {
+                    self.unCheckCommTypeForPresence(sharedComm: shareComm)
+                    self.sharedComms.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.presentInfo(title: "Delete shared comm", msg: "No shared comm")
+            }
+        }
+    }
+    
+    func updateSharedCommCallback(shareComm: SharedComm?, error: Error?, indexPath: IndexPath) {
+        activityAlert.dismiss(animated: true) {
+            if let error = error {
+                self.presentInfo(title: "Share or UnShare", msg: error.localizedDescription)
+            } else if let shareComm = shareComm {
+                DispatchQueue.main.async {
+                    self.sharedComms[indexPath.row] = shareComm
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            } else {
+                self.presentInfo(title: "Share or UnShare", msg: "No shared comm")
+            }
+        }
+    }
+    
     func getAllSharedCommsCallback(shareComms: [SharedComm]?, error: Error?) {
         activityAlert.dismiss(animated: true) {
             if let error = error {
@@ -172,11 +244,9 @@ extension SharedCommsViewController: CommsDelegate {
         activityAlert.dismiss(animated: true) {
             if let error = error {
                 self.presentInfo(title: "Save shared comm", msg: error.localizedDescription)
-            } else if let sharedComm = sharedComm {
+            } else if let _ = sharedComm {
                 DispatchQueue.main.async {
-                    self.sharedComms.append(sharedComm)
-                    self.checkCommTypeForPresence(sharedComm: sharedComm)
-                    self.tableView.reloadData()
+                    self.sharedCommsService.getAllSharedComms()
                 }
             } else {
                 self.presentInfo(title: "Save shared comm", msg: "shared comm not available.")

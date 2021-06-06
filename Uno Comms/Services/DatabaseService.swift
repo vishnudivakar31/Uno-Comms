@@ -66,4 +66,23 @@ class DatabaseService {
             }
         }
     }
+    
+    public func updateSharedComm(sharedComm: SharedComm, completionHandler: @escaping (_ sharedComm: SharedComm?, _ error: Error?) -> ()) {
+        do {
+            try db.collection(SHARED_COMMS_COLLECTION).document(sharedComm.id ?? "").setData(from: sharedComm)
+            completionHandler(sharedComm, nil)
+        } catch let error {
+            completionHandler(nil, error)
+        }
+    }
+    
+    public func deleteSharedComm(sharedComm: SharedComm, completionHandler: @escaping (_ sharedComm: SharedComm?, _ error: Error?) -> ()) {
+        db.collection(SHARED_COMMS_COLLECTION).document(sharedComm.id ?? "").delete { error in
+            if let error = error {
+                completionHandler(nil, error)
+            } else {
+                completionHandler(sharedComm, nil)
+            }
+        }
+    }
 }
