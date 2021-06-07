@@ -25,6 +25,7 @@
 		8B6A37D526665DD900F2C4C9 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37D426665DD900F2C4C9 /* LoginService.swift */; };
 		8B6A37D72667B60800F2C4C9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37D62667B60800F2C4C9 /* HomeTabBarController.swift */; };
 		8B6A37D92667B6DB00F2C4C9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37D82667B6DB00F2C4C9 /* SettingsViewController.swift */; };
+		8BCD8504266E7A7D00478111 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD8503266E7A7D00478111 /* Contact.swift */; };
 		8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B9102667BF5F0004088E /* SettingsService.swift */; };
 		8BD3B914266909130004088E /* SharedCommsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */; };
 		8BD3B915266909130004088E /* SharedCommsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */; };
@@ -59,6 +60,7 @@
 		8B6A37D426665DD900F2C4C9 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8B6A37D62667B60800F2C4C9 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		8B6A37D82667B6DB00F2C4C9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8BCD8503266E7A7D00478111 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		8BD3B9102667BF5F0004088E /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsTableViewCell.swift; sourceTree = "<group>"; };
 		8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCommsTableViewCell.xib; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				8B6A37D1266525CB00F2C4C9 /* AccountUser.swift */,
 				8BD3B91626690F360004088E /* COMMS_TYPE.swift */,
 				8BD3B91826690FFE0004088E /* SharedComm.swift */,
+				8BCD8503266E7A7D00478111 /* Contact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				8B6A37D72667B60800F2C4C9 /* HomeTabBarController.swift in Sources */,
 				8B6A37CC26650B0F00F2C4C9 /* AccountService.swift in Sources */,
 				8B0D12592663C6E800449952 /* LoginViewController.swift in Sources */,
+				8BCD8504266E7A7D00478111 /* Contact.swift in Sources */,
 				8BD3B91B26691BA00004088E /* SharedCommsViewController.swift in Sources */,
 				8B0D12552663C6E800449952 /* AppDelegate.swift in Sources */,
 				8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */,

@@ -17,6 +17,7 @@ class QRViewController: UIViewController {
     private var previewLayer: AVCaptureVideoPreviewLayer!
     
     private let qrService = QRService()
+    private let activityAlert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
@@ -24,6 +25,7 @@ class QRViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        qrService.qrDelegates = self
         if let uid = qrService.getUID(), let qrCode = generateQRCode(content: uid) {
             qrImage.image = qrCode
             qrImage.layer.magnificationFilter = .nearest
@@ -66,6 +68,12 @@ class QRViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    private func presentActivityAlert(title: String, msg: String) {
+        activityAlert.title = title
+        activityAlert.message = msg
+        present(activityAlert, animated: true, completion: nil)
+    }
+    
     private func setupQRScanner() {
         captureSession = AVCaptureSession()
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -104,7 +112,8 @@ class QRViewController: UIViewController {
     }
     
     private func foundCode(code: String) {
-        print(code)
+        presentActivityAlert(title: "Contact found", msg: "adding contacts to your account, please wait...")
+        qrService.addContact(uid: code)
     }
 }
 
@@ -119,5 +128,20 @@ extension QRViewController: AVCaptureMetadataOutputObjectsDelegate {
             foundCode(code: stringValue)
         }
         previewLayer.isHidden = true
+    }
+}
+
+// MARK:- Extenstion QRServiceDelegates
+extension QRViewController: QRDelegates {
+    func addContactCallback(contact: Contact?, error: Error?) {
+        activityAlert.dismiss(animated: true) {
+            if let error = error {
+                self.presentInfo(title: "Save Contact?", msg: error.localizedDescription)
+            } else if let _ = contact {
+                self.presentInfo(title: "Save Contact?", msg: "Contact added to your account successfully. Navigate to contacts to view them")
+            } else {
+                self.presentInfo(title: "Save Contact?", msg: "Unable to save. Try again later.")
+            }
+        }
     }
 }

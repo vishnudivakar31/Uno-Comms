@@ -13,6 +13,7 @@ class DatabaseService {
     private let db = Firestore.firestore()
     private let USER_COLLECTION = "users"
     private let SHARED_COMMS_COLLECTION = "shared_comms"
+    private let CONTACT_COLLECTION = "contacts"
     
     public func saveUser(user: AccountUser, completionHandler: (_ error: Error?) -> ()) {
         do {
@@ -83,6 +84,39 @@ class DatabaseService {
             } else {
                 completionHandler(sharedComm, nil)
             }
+        }
+    }
+    
+    public func getContact(uid: String, completionHandler: @escaping (_ contact: Contact?, _ error: Error?) -> ()) {
+        db.collection(CONTACT_COLLECTION).whereField("uid", isEqualTo: uid).getDocuments { documentSnapshot, error in
+            if let error = error {
+                completionHandler(nil, error)
+            } else if let documentSnapshot = documentSnapshot {
+                let contacts: [Contact] = documentSnapshot.documents.compactMap { return try? $0.data(as: Contact.self)}
+                if contacts.count > 0 {
+                    completionHandler(contacts.first, nil)
+                } else {
+                    completionHandler(nil, NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "No contacts found"]))
+                }
+            }
+        }
+    }
+    
+    public func saveContact(contact: Contact, completionHandler: @escaping (_ contact: Contact? , _ error: Error?) -> ()) {
+        do {
+            try db.collection(CONTACT_COLLECTION).document().setData(from: contact)
+            completionHandler(contact, nil)
+        } catch let error {
+            completionHandler(nil, error)
+        }
+    }
+    
+    public func updateContact(contact: Contact, completionHandler: @escaping (_ contact: Contact? , _ error: Error?) -> ()) {
+        do {
+            try db.collection(CONTACT_COLLECTION).document(contact.id ?? "").setData(from: contact)
+            completionHandler(contact, nil)
+        } catch let error {
+            completionHandler(nil, error)
         }
     }
 }
