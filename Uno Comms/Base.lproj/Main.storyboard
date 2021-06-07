@@ -256,19 +256,92 @@
         <!--QR Code-->
         <scene sceneID="EIG-Nd-Ppt">
             <objects>
-                <viewController id="7TK-Ci-zRk" sceneMemberID="viewController">
+                <viewController id="7TK-Ci-zRk" customClass="QRViewController" customModule="Uno_Comms" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A40-Yz-4EY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3uX-Gc-VXV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="471"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XJd-Sa-vef">
+                                        <rect key="frame" x="57" y="123" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="We7-gY-9SF"/>
+                                            <constraint firstAttribute="height" constant="300" id="bge-xq-J1w"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask you friend to scan this code to get all your shared comms" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Iu-TZ-Rnm">
+                                        <rect key="frame" x="20" y="50" width="372" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="372" id="6fj-O5-Zpg"/>
+                                            <constraint firstAttribute="height" constant="43" id="zFs-gZ-ZJ2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <color key="textColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Iu-TZ-Rnm" secondAttribute="trailing" constant="20" symbolic="YES" id="5bC-yM-6HA"/>
+                                    <constraint firstItem="XJd-Sa-vef" firstAttribute="centerY" secondItem="3uX-Gc-VXV" secondAttribute="centerY" constant="37.5" id="8fC-Jp-Crp"/>
+                                    <constraint firstItem="XJd-Sa-vef" firstAttribute="centerX" secondItem="3uX-Gc-VXV" secondAttribute="centerX" id="N4l-Fq-06l"/>
+                                    <constraint firstItem="2Iu-TZ-Rnm" firstAttribute="top" secondItem="3uX-Gc-VXV" secondAttribute="top" constant="50" id="TPa-rZ-Z6X"/>
+                                    <constraint firstItem="XJd-Sa-vef" firstAttribute="top" secondItem="2Iu-TZ-Rnm" secondAttribute="bottom" constant="30" id="WYo-gP-o2Q"/>
+                                    <constraint firstItem="2Iu-TZ-Rnm" firstAttribute="leading" secondItem="3uX-Gc-VXV" secondAttribute="leading" constant="20" id="cxz-EB-lzf"/>
+                                    <constraint firstItem="XJd-Sa-vef" firstAttribute="centerX" secondItem="3uX-Gc-VXV" secondAttribute="centerX" id="e5B-LG-X1P"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="f7e-VA-elp">
+                                <rect key="frame" x="20" y="541.5" width="96.5" height="52"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6C-57-geo">
+                                        <rect key="frame" x="15" y="15" width="66.5" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <color key="tintColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Scan" image="camera.fill" catalog="system">
+                                            <color key="titleColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onAddCommsTapped:" destination="WRF-4f-7W1" eventType="touchUpInside" id="W1X-rC-Xyn"/>
+                                            <action selector="onScanTapped:" destination="7TK-Ci-zRk" eventType="touchUpInside" id="q1D-7q-SNQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.1647058824" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <edgeInsets key="layoutMargins" top="15" left="15" bottom="15" right="15"/>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code to add friend. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-C0-RN6">
+                                <rect key="frame" x="20" y="501" width="226" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Lg6-0w-kba"/>
                         <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="3uX-Gc-VXV" firstAttribute="trailing" secondItem="Lg6-0w-kba" secondAttribute="trailing" id="0dZ-b0-9tf"/>
+                            <constraint firstItem="3uX-Gc-VXV" firstAttribute="leading" secondItem="Lg6-0w-kba" secondAttribute="leading" id="582-7s-vT2"/>
+                            <constraint firstItem="hL9-C0-RN6" firstAttribute="leading" secondItem="Lg6-0w-kba" secondAttribute="leading" constant="20" id="DEa-0R-zlz"/>
+                            <constraint firstItem="hL9-C0-RN6" firstAttribute="top" secondItem="3uX-Gc-VXV" secondAttribute="bottom" constant="30" id="Eac-Bp-Ssl"/>
+                            <constraint firstItem="f7e-VA-elp" firstAttribute="leading" secondItem="Lg6-0w-kba" secondAttribute="leading" constant="20" id="Et7-aQ-XTd"/>
+                            <constraint firstItem="f7e-VA-elp" firstAttribute="leading" secondItem="Lg6-0w-kba" secondAttribute="leading" constant="20" id="SKK-Qb-jOb"/>
+                            <constraint firstItem="3uX-Gc-VXV" firstAttribute="top" secondItem="A40-Yz-4EY" secondAttribute="top" id="afj-Ez-YTU"/>
+                            <constraint firstItem="f7e-VA-elp" firstAttribute="top" secondItem="hL9-C0-RN6" secondAttribute="bottom" constant="20" id="eyd-e5-WWT"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="QR Code" image="qrcode" catalog="system" id="VvI-b9-aAu"/>
+                    <connections>
+                        <outlet property="buttonView" destination="f7e-VA-elp" id="xJp-Gf-9vw"/>
+                        <outlet property="qrImage" destination="XJd-Sa-vef" id="MD4-g9-zu3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSn-gc-5s2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1690" y="1158"/>
+            <point key="canvasLocation" x="1689.8550724637682" y="1157.8125"/>
         </scene>
         <!--Shared Comms-->
         <scene sceneID="MDQ-Ux-oG0">
@@ -518,11 +591,12 @@
     <resources>
         <image name="Logo" width="170.5" height="170.5"/>
         <image name="book.fill" catalog="system" width="128" height="102"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="network" catalog="system" width="128" height="121"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.circle.fill" catalog="system" width="32" height="32"/>
         <image name="pip.exit" catalog="system" width="128" height="96"/>
         <image name="pip.remove" catalog="system" width="128" height="96"/>
         <image name="plus" catalog="system" width="128" height="113"/>

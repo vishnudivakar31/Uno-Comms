@@ -14,6 +14,7 @@
 		8B0D125F2663C6E800449952 /* Uno_Comms.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D125D2663C6E800449952 /* Uno_Comms.xcdatamodeld */; };
 		8B0D12612663C6E900449952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0D12602663C6E900449952 /* Assets.xcassets */; };
 		8B0D12642663C6E900449952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B0D12622663C6E900449952 /* LaunchScreen.storyboard */; };
+		8B218879266D76CD0096A765 /* QRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B218878266D76CD0096A765 /* QRService.swift */; };
 		8B5FBFD4266420CC005052CD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */; };
 		8B6A37C8266432A300F2C4C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6A37C7266432A300F2C4C9 /* GoogleService-Info.plist */; };
 		8B6A37CA2664F92500F2C4C9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A37C92664F92500F2C4C9 /* AuthenticationService.swift */; };
@@ -31,6 +32,7 @@
 		8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91826690FFE0004088E /* SharedComm.swift */; };
 		8BD3B91B26691BA00004088E /* SharedCommsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */; };
 		8BD3B91D266BC1180004088E /* SharedCommsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91C266BC1180004088E /* SharedCommsService.swift */; };
+		8BD3B91F266D76680004088E /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B91E266D76680004088E /* QRViewController.swift */; };
 		DFB2700AAFA247C694651907 /* Pods_Uno_Comms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,7 @@
 		8B0D12602663C6E900449952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B0D12632663C6E900449952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B0D12652663C6E900449952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B218878266D76CD0096A765 /* QRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRService.swift; sourceTree = "<group>"; };
 		8B5FBFD3266420CC005052CD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		8B6A37C7266432A300F2C4C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B6A37C92664F92500F2C4C9 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		8BD3B91826690FFE0004088E /* SharedComm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComm.swift; sourceTree = "<group>"; };
 		8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsViewController.swift; sourceTree = "<group>"; };
 		8BD3B91C266BC1180004088E /* SharedCommsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsService.swift; sourceTree = "<group>"; };
+		8BD3B91E266D76680004088E /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		FC785B7CED20AE543E736A18 /* Pods_Uno_Comms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uno_Comms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,6 +156,7 @@
 				8B6A37D426665DD900F2C4C9 /* LoginService.swift */,
 				8BD3B9102667BF5F0004088E /* SettingsService.swift */,
 				8BD3B91C266BC1180004088E /* SharedCommsService.swift */,
+				8B218878266D76CD0096A765 /* QRService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				8B6A37D62667B60800F2C4C9 /* HomeTabBarController.swift */,
 				8B6A37D82667B6DB00F2C4C9 /* SettingsViewController.swift */,
 				8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */,
+				8BD3B91E266D76680004088E /* QRViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -304,10 +310,12 @@
 				8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */,
 				8B6A37CA2664F92500F2C4C9 /* AuthenticationService.swift in Sources */,
 				8B6A37D526665DD900F2C4C9 /* LoginService.swift in Sources */,
+				8BD3B91F266D76680004088E /* QRViewController.swift in Sources */,
 				8B6A37CE26651BF900F2C4C9 /* StorageService.swift in Sources */,
 				8B0D125F2663C6E800449952 /* Uno_Comms.xcdatamodeld in Sources */,
 				8B6A37D92667B6DB00F2C4C9 /* SettingsViewController.swift in Sources */,
 				8BD3B91726690F360004088E /* COMMS_TYPE.swift in Sources */,
+				8B218879266D76CD0096A765 /* QRService.swift in Sources */,
 				8B6A37D2266525CB00F2C4C9 /* AccountUser.swift in Sources */,
 				8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */,
 				8B0D12572663C6E800449952 /* SceneDelegate.swift in Sources */,
