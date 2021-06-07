@@ -6,13 +6,21 @@
 //
 
 import UIKit
+import AVFoundation
 
 class QRViewController: UIViewController {
 
     @IBOutlet weak var qrImage: UIImageView!
     @IBOutlet weak var buttonView: UIStackView!
     
+    private var captureSession: AVCaptureSession!
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+    
     private let qrService = QRService()
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +28,21 @@ class QRViewController: UIViewController {
             qrImage.image = qrCode
             qrImage.layer.magnificationFilter = .nearest
         }
-        
         buttonView.layer.cornerRadius = 10.0
+        setupQRScanner()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if captureSession.isRunning {
+            captureSession.stopRunning()
+        }
     }
     
     @IBAction func onScanTapped(_ sender: Any) {
+        previewLayer.isHidden = false
+        captureSession.startRunning()
     }
     
     private func generateQRCode(content: String) -> UIImage? {
@@ -39,5 +57,67 @@ class QRViewController: UIViewController {
             }
         }
         return nil
+    }
+    
+    private func presentInfo(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .actionSheet)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func setupQRScanner() {
+        captureSession = AVCaptureSession()
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+        let videoInput: AVCaptureDeviceInput
+        
+        do {
+            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+        } catch {
+            return
+        }
+        
+        if captureSession.canAddInput(videoInput) {
+            captureSession.addInput(videoInput)
+        } else {
+            presentInfo(title: "Scan QR Code", msg: "Your device does not support QR scanner")
+            captureSession = nil
+            return
+        }
+        
+        let metadataOutput = AVCaptureMetadataOutput()
+        
+        if captureSession.canAddOutput(metadataOutput) {
+            captureSession.addOutput(metadataOutput)
+            metadataOutput.setMetadataObjectsDelegate(self, queue: .main)
+            metadataOutput.metadataObjectTypes = [.qr]
+        } else {
+            presentInfo(title: "Scan QR Code", msg: "Your device does not support QR scanner")
+            captureSession = nil
+            return
+        }
+        
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame = view.layer.bounds
+        previewLayer.videoGravity = .resizeAspectFill
+        view.layer.addSublayer(previewLayer)
+    }
+    
+    private func foundCode(code: String) {
+        print(code)
+    }
+}
+
+// MARK:- Extenstion AVCaptureMetadataOutputObjectsDelegate
+extension QRViewController: AVCaptureMetadataOutputObjectsDelegate {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        captureSession.stopRunning()
+        if let metadataObject = metadataObjects.first {
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let stringValue = readableObject.stringValue else { return }
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            foundCode(code: stringValue)
+        }
+        previewLayer.isHidden = true
     }
 }
