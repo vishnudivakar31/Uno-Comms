@@ -28,6 +28,7 @@
 		8BCD8504266E7A7D00478111 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD8503266E7A7D00478111 /* Contact.swift */; };
 		8BCD8507266FC18C00478111 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD8505266FC18C00478111 /* ContactTableViewCell.swift */; };
 		8BCD8508266FC18C00478111 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCD8506266FC18C00478111 /* ContactTableViewCell.xib */; };
+		8BCD850A266FC5CB00478111 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD8509266FC5CB00478111 /* ContactViewController.swift */; };
 		8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B9102667BF5F0004088E /* SettingsService.swift */; };
 		8BD3B914266909130004088E /* SharedCommsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */; };
 		8BD3B915266909130004088E /* SharedCommsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */; };
@@ -65,6 +66,7 @@
 		8BCD8503266E7A7D00478111 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		8BCD8505266FC18C00478111 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		8BCD8506266FC18C00478111 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
+		8BCD8509266FC5CB00478111 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		8BD3B9102667BF5F0004088E /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsTableViewCell.swift; sourceTree = "<group>"; };
 		8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCommsTableViewCell.xib; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				8B6A37D82667B6DB00F2C4C9 /* SettingsViewController.swift */,
 				8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */,
 				8BD3B91E266D76680004088E /* QRViewController.swift */,
+				8BCD8509266FC5CB00478111 /* ContactViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				8B0D125F2663C6E800449952 /* Uno_Comms.xcdatamodeld in Sources */,
 				8BCD8507266FC18C00478111 /* ContactTableViewCell.swift in Sources */,
 				8B6A37D92667B6DB00F2C4C9 /* SettingsViewController.swift in Sources */,
+				8BCD850A266FC5CB00478111 /* ContactViewController.swift in Sources */,
 				8BD3B91726690F360004088E /* COMMS_TYPE.swift in Sources */,
 				8B218879266D76CD0096A765 /* QRService.swift in Sources */,
 				8B6A37D2266525CB00F2C4C9 /* AccountUser.swift in Sources */,

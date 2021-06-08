@@ -431,7 +431,7 @@
         <!--Contacts-->
         <scene sceneID="oDP-Y5-ssl">
             <objects>
-                <viewController id="GNW-Nn-gtf" sceneMemberID="viewController">
+                <viewController id="GNW-Nn-gtf" customClass="ContactViewController" customModule="Uno_Comms" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Cv-fu-WMz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -443,7 +443,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tu4-T1-vRx">
-                                <rect key="frame" x="0.0" y="95" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="708"/>
                                 <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -466,7 +466,7 @@
                         <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Tu4-T1-vRx" firstAttribute="leading" secondItem="g6e-hV-s1C" secondAttribute="leading" id="6BK-0U-Q7U"/>
-                            <constraint firstItem="Tu4-T1-vRx" firstAttribute="top" secondItem="Cxb-zE-LMK" secondAttribute="bottom" constant="10" id="QJu-9L-tWK"/>
+                            <constraint firstItem="Tu4-T1-vRx" firstAttribute="top" secondItem="Cxb-zE-LMK" secondAttribute="bottom" constant="20" id="QJu-9L-tWK"/>
                             <constraint firstItem="Cxb-zE-LMK" firstAttribute="top" secondItem="g6e-hV-s1C" secondAttribute="top" constant="20" id="bxZ-pc-AqQ"/>
                             <constraint firstItem="Cxb-zE-LMK" firstAttribute="leading" secondItem="g6e-hV-s1C" secondAttribute="leading" constant="20" id="uCf-Vn-eJA"/>
                             <constraint firstItem="g6e-hV-s1C" firstAttribute="trailing" secondItem="Tu4-T1-vRx" secondAttribute="trailing" id="w0J-aQ-43U"/>
@@ -474,6 +474,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Contacts" image="book" catalog="system" id="pzg-3i-BmJ"/>
+                    <connections>
+                        <outlet property="tableView" destination="Tu4-T1-vRx" id="9S6-25-UKf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nno-R5-6cD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
