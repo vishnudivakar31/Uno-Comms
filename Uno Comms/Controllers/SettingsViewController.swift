@@ -80,7 +80,7 @@ class SettingsViewController: UIViewController {
     private func beautifyProfilePicture() {
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
         profilePicture.layer.borderWidth = 3.0
-        profilePicture.layer.borderColor = #colorLiteral(red: 0.8680856228, green: 0.9031531811, blue: 0.9152787924, alpha: 1)
+        profilePicture.layer.borderColor = #colorLiteral(red: 0.07602740079, green: 0.1669456363, blue: 0.3494701087, alpha: 1)
     }
     
     private func presentInfo(title: String, message: String) {
