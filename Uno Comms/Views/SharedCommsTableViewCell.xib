@@ -71,6 +71,7 @@
                 <outlet property="commLogo" destination="eg7-d5-NBa" id="Hbf-69-Fcl"/>
                 <outlet property="identifierLabel" destination="nD0-K7-fVA" id="XdZ-MW-a6j"/>
                 <outlet property="infoStavView" destination="Ga1-sG-FEy" id="ahE-2f-184"/>
+                <outlet property="selectionView" destination="gaX-Hu-gOF" id="s2S-Pu-LxW"/>
                 <outlet property="statusLabel" destination="m3W-Hc-t8M" id="dIE-qu-USh"/>
             </connections>
             <point key="canvasLocation" x="73.188405797101453" y="113.16964285714285"/>

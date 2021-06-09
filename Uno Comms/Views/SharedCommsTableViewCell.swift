@@ -18,6 +18,7 @@ class SharedCommsTableViewCell: UITableViewCell {
     @IBOutlet weak var commLogo: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var infoStavView: UIStackView!
+    @IBOutlet weak var selectionView: UIView!
     
     public var identifierLabelText: String?
     public var commLogoImage: UIImage?
@@ -53,5 +54,10 @@ class SharedCommsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        if selected {
+            selectionView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        } else {
+            selectionView.backgroundColor = #colorLiteral(red: 0.8680856228, green: 0.9031531811, blue: 0.9152787924, alpha: 1)
+        }
     }
 }
