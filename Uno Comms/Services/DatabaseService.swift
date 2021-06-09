@@ -38,6 +38,17 @@ class DatabaseService {
         }
     }
     
+    public func getUsers(uids: [String], completionHandler: @escaping (_ users: [AccountUser]?, _ error: Error?) -> ()) {
+        db.collection(USER_COLLECTION).whereField("uid", in: uids).getDocuments { documentSnapshot, error in
+            if let error = error {
+                completionHandler(nil, error)
+            } else if let documentSnapshot = documentSnapshot {
+                let userAccounts: [AccountUser] = documentSnapshot.documents.compactMap { return try? $0.data(as: AccountUser.self)}
+                completionHandler(userAccounts, nil)
+            }
+        }
+    }
+    
     public func updateUser(user: AccountUser, completionHandler: @escaping (_ user: AccountUser?, _ error: Error?) -> ()) {
         do {
             try db.collection(USER_COLLECTION).document(user.id ?? "").setData(from: user)

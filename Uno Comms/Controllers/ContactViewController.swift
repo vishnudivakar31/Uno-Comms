@@ -11,12 +11,19 @@ class ContactViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private var accountUsers: [AccountUser] = [
-        AccountUser(name: "Vishnu Divakar", uid: "asdasd", profilePictureURL: "https://firebasestorage.googleapis.com/v0/b/uno-comms.appspot.com/o/images%2FVTWnHZBYmcWBzIMIfchcTc14ibV2.png?alt=media&token=0b1b600f-2cbd-4350-82e1-d065365cece2", joinedDate: Date())
-    ]
+    private let contactService = ContactService()
+    private var accountUsers: [AccountUser] = []
+    private let activityAlert = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        contactService.contactDelegates = self
+        contactService.getContact()
+        presentActivityAlert(title: "Please wait", msg: "get your contacts...")
+    }
+    
+    private func setupTableView() {
         let nib = UINib(nibName: "ContactTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ContactTableViewCell")
         tableView.dataSource = self
@@ -24,6 +31,19 @@ class ContactViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.backgroundColor = #colorLiteral(red: 0.8680856228, green: 0.9031531811, blue: 0.9152787924, alpha: 1)
         tableView.rowHeight = 60.0
+    }
+    
+    private func presentInfo(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .actionSheet)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func presentActivityAlert(title: String, msg: String) {
+        activityAlert.title = title
+        activityAlert.message = msg
+        present(activityAlert, animated: true, completion: nil)
     }
 }
 
@@ -41,5 +61,38 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
         cell.profileImageUrl = accountUser.profilePictureURL
         cell.redraw()
         return cell
+    }
+}
+
+// MARK:- Extension ContactDelegates
+extension ContactViewController: ContactDelegates {
+    func getProfileCallback(userAccounts: [AccountUser]?, error: Error?) {
+        activityAlert.dismiss(animated: true) {
+            if let error = error {
+                self.presentInfo(title: "Contacts", msg: error.localizedDescription)
+            } else if let userAccounts = userAccounts {
+                DispatchQueue.main.async {
+                    self.accountUsers = userAccounts
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.presentInfo(title: "Contacts", msg: "No records found")
+            }
+        }
+    }
+    
+    func getContactCallback(contact: Contact?, error: Error?) {
+        if let error = error {
+            activityAlert.dismiss(animated: true) {
+                self.presentInfo(title: "Contacts", msg: error.localizedDescription)
+            }
+        } else if let contact = contact {
+            self.contactService.getProfiles(uids: contact.friends)
+        } else {
+            activityAlert.dismiss(animated: true) {
+                self.presentInfo(title: "Contacts", msg: "No records found")
+            }
+        }
+        
     }
 }
