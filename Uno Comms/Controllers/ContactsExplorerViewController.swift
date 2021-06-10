@@ -59,6 +59,20 @@ class ContactsExplorerViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
+    
+    private func performTableOption(sharedComm: SharedComm) {
+        var url: URL?
+        if sharedComm.commType == .TELEPHONE {
+            url = URL(string: "tel://\(sharedComm.identifier)")
+        }
+        
+        if let url = url {
+            let application = UIApplication.shared
+            if application.canOpenURL(url) {
+                application.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
 }
 
 // Extension TableView Delegates
@@ -76,6 +90,11 @@ extension ContactsExplorerViewController: UITableViewDelegate, UITableViewDataSo
         cell.shared = sharedComm.shared
         cell.drawCell()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sharedComm = self.sharedComms[indexPath.row]
+        performTableOption(sharedComm: sharedComm)
     }
 }
 
