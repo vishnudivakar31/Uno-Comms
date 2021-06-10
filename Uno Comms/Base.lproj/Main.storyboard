@@ -438,7 +438,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tu4-T1-vRx">
-                                <rect key="frame" x="0.0" y="105" width="414" height="708"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="757"/>
                                 <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -471,16 +471,17 @@
                     <tabBarItem key="tabBarItem" title="Contacts" image="book" catalog="system" id="pzg-3i-BmJ"/>
                     <connections>
                         <outlet property="tableView" destination="Tu4-T1-vRx" id="9S6-25-UKf"/>
+                        <segue destination="IRo-Iy-wJo" kind="presentation" identifier="GoToContactExplorer" modalPresentationStyle="fullScreen" id="vhz-Aq-OeQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nno-R5-6cD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1691" y="-193"/>
         </scene>
-        <!--View Controller-->
+        <!--Contacts Explorer View Controller-->
         <scene sceneID="Fmt-r3-KLg">
             <objects>
-                <viewController id="IRo-Iy-wJo" sceneMemberID="viewController">
+                <viewController id="IRo-Iy-wJo" customClass="ContactsExplorerViewController" customModule="Uno_Comms" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D1y-s9-7Le">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -516,6 +517,9 @@
                                 <state key="normal" title="Go Back" image="arrowshape.turn.up.backward" catalog="system">
                                     <color key="titleColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="goBackTapped:" destination="IRo-Iy-wJo" eventType="touchUpInside" id="UFA-hV-pN4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ds8-Y5-uSD"/>
@@ -532,6 +536,11 @@
                             <constraint firstItem="t5p-PN-hsl" firstAttribute="top" secondItem="Rtk-24-oM3" secondAttribute="bottom" constant="20" id="jdm-MC-Rh6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contactNameLabel" destination="Rtk-24-oM3" id="eii-N2-2XI"/>
+                        <outlet property="tableView" destination="t5p-PN-hsl" id="mtG-Nl-yok"/>
+                        <segue destination="GNW-Nn-gtf" kind="presentation" identifier="GoToContacts" modalPresentationStyle="fullScreen" id="F4v-AQ-2iy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkF-Hm-m4j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -680,6 +689,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="vhz-Aq-OeQ"/>
+        <segue reference="F4v-AQ-2iy"/>
         <segue reference="fW8-8n-6Qb"/>
     </inferredMetricsTieBreakers>
     <resources>

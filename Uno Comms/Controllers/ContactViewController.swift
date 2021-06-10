@@ -15,12 +15,24 @@ class ContactViewController: UIViewController {
     private var accountUsers: [AccountUser] = []
     private let activityAlert = UIAlertController()
     
+    private var selectedUser: AccountUser?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         contactService.contactDelegates = self
         contactService.getContact()
         presentActivityAlert(title: "Please wait", msg: "get your contacts...")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToContactExplorer" {
+            guard let contactsExplorerView = segue.destination as? ContactsExplorerViewController else { return }
+            if let selectedUser = selectedUser {
+                contactsExplorerView.friendUID = selectedUser.uid
+                contactsExplorerView.friendName = selectedUser.name
+            }
+        }
     }
     
     private func setupTableView() {
@@ -62,37 +74,48 @@ extension ContactViewController: UITableViewDataSource, UITableViewDelegate {
         cell.redraw()
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedUser = self.accountUsers[indexPath.row]
+        self.performSegue(withIdentifier: "GoToContactExplorer", sender: self)
+    }
 }
 
 // MARK:- Extension ContactDelegates
 extension ContactViewController: ContactDelegates {
     func getProfileCallback(userAccounts: [AccountUser]?, error: Error?) {
-        activityAlert.dismiss(animated: true) {
-            if let error = error {
-                self.presentInfo(title: "Contacts", msg: error.localizedDescription)
-            } else if let userAccounts = userAccounts {
-                DispatchQueue.main.async {
-                    self.accountUsers = userAccounts
-                    self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.activityAlert.dismiss(animated: true) {
+                if let error = error {
+                    self.presentInfo(title: "Contacts", msg: error.localizedDescription)
+                } else if let userAccounts = userAccounts {
+                    DispatchQueue.main.async {
+                        self.accountUsers = userAccounts
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    self.presentInfo(title: "Contacts", msg: "No records found")
                 }
-            } else {
-                self.presentInfo(title: "Contacts", msg: "No records found")
             }
         }
     }
     
     func getContactCallback(contact: Contact?, error: Error?) {
-        if let error = error {
-            activityAlert.dismiss(animated: true) {
-                self.presentInfo(title: "Contacts", msg: error.localizedDescription)
-            }
-        } else if let contact = contact {
-            self.contactService.getProfiles(uids: contact.friends)
-        } else {
-            activityAlert.dismiss(animated: true) {
-                self.presentInfo(title: "Contacts", msg: "No records found")
+        DispatchQueue.main.async {
+            if let error = error {
+                while !self.activityAlert.isViewLoaded {
+                    
+                }
+                self.activityAlert.dismiss(animated: true) {
+                    self.presentInfo(title: "Contacts", msg: error.localizedDescription)
+                }
+            } else if let contact = contact {
+                self.contactService.getProfiles(uids: contact.friends)
+            } else {
+                self.activityAlert.dismiss(animated: true) {
+                    self.presentInfo(title: "Contacts", msg: "No records found")
+                }
             }
         }
-        
     }
 }

@@ -30,6 +30,8 @@
 		8BCD8508266FC18C00478111 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCD8506266FC18C00478111 /* ContactTableViewCell.xib */; };
 		8BCD850A266FC5CB00478111 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD8509266FC5CB00478111 /* ContactViewController.swift */; };
 		8BCD850C267042F100478111 /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD850B267042F100478111 /* ContactService.swift */; };
+		8BCD850E2672418200478111 /* ContactsExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD850D2672418200478111 /* ContactsExplorerViewController.swift */; };
+		8BCD85102672442500478111 /* ContactsExplorerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD850F2672442500478111 /* ContactsExplorerService.swift */; };
 		8BD3B9112667BF5F0004088E /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B9102667BF5F0004088E /* SettingsService.swift */; };
 		8BD3B914266909130004088E /* SharedCommsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */; };
 		8BD3B915266909130004088E /* SharedCommsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */; };
@@ -69,6 +71,8 @@
 		8BCD8506266FC18C00478111 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		8BCD8509266FC5CB00478111 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		8BCD850B267042F100478111 /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
+		8BCD850D2672418200478111 /* ContactsExplorerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsExplorerViewController.swift; sourceTree = "<group>"; };
+		8BCD850F2672442500478111 /* ContactsExplorerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsExplorerService.swift; sourceTree = "<group>"; };
 		8BD3B9102667BF5F0004088E /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		8BD3B912266909130004088E /* SharedCommsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCommsTableViewCell.swift; sourceTree = "<group>"; };
 		8BD3B913266909130004088E /* SharedCommsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCommsTableViewCell.xib; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				8BD3B91C266BC1180004088E /* SharedCommsService.swift */,
 				8B218878266D76CD0096A765 /* QRService.swift */,
 				8BCD850B267042F100478111 /* ContactService.swift */,
+				8BCD850F2672442500478111 /* ContactsExplorerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				8BD3B91A26691BA00004088E /* SharedCommsViewController.swift */,
 				8BD3B91E266D76680004088E /* QRViewController.swift */,
 				8BCD8509266FC5CB00478111 /* ContactViewController.swift */,
+				8BCD850D2672418200478111 /* ContactsExplorerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BCD850E2672418200478111 /* ContactsExplorerViewController.swift in Sources */,
 				8BD3B91D266BC1180004088E /* SharedCommsService.swift in Sources */,
 				8B6A37D02665234100F2C4C9 /* DatabaseService.swift in Sources */,
 				8B5FBFD4266420CC005052CD /* CreateAccountViewController.swift in Sources */,
@@ -323,6 +330,7 @@
 				8B6A37CC26650B0F00F2C4C9 /* AccountService.swift in Sources */,
 				8B0D12592663C6E800449952 /* LoginViewController.swift in Sources */,
 				8BCD8504266E7A7D00478111 /* Contact.swift in Sources */,
+				8BCD85102672442500478111 /* ContactsExplorerService.swift in Sources */,
 				8BD3B91B26691BA00004088E /* SharedCommsViewController.swift in Sources */,
 				8B0D12552663C6E800449952 /* AppDelegate.swift in Sources */,
 				8BD3B91926690FFE0004088E /* SharedComm.swift in Sources */,
