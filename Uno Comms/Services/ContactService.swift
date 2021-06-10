@@ -10,6 +10,7 @@ import Foundation
 protocol ContactDelegates {
     func getContactCallback(contact: Contact?, error: Error?)
     func getProfileCallback(userAccounts: [AccountUser]?, error: Error?)
+    func registerForContactsCallback(status: Bool, error: Error?)
 }
 
 class ContactService {
@@ -29,6 +30,14 @@ class ContactService {
     public func getProfiles(uids: [String]) {
         databaseService.getUsers(uids: uids) { accountUsers, error in
             self.contactDelegates?.getProfileCallback(userAccounts: accountUsers, error: error)
+        }
+    }
+    
+    public func registerForContact() {
+        if let currentUser = authenticationService.getCurrentUser() {
+            databaseService.registerForContacts(uid: currentUser.uid) { status, error in
+                self.contactDelegates?.registerForContactsCallback(status: status, error: error)
+            }
         }
     }
 }

@@ -67,6 +67,16 @@ class DatabaseService {
         }
     }
     
+    public func registerForContacts(uid: String, completionHandler: @escaping (_ status: Bool, _ error: Error?) -> ()) {
+        db.collection(CONTACT_COLLECTION).whereField("uid", isEqualTo: uid).addSnapshotListener { snapshot, error in
+            if let error = error {
+                completionHandler(false, error)
+            } else {
+                completionHandler(true, nil)
+            }
+        }
+    }
+    
     public func getSharedComms(uid: String, completionHandler: @escaping (_ sharedComms: [SharedComm]?, _ error: Error?) -> ()) {
         let sharedCommsDocRef = db.collection(SHARED_COMMS_COLLECTION).whereField("uid", isEqualTo: uid)
         sharedCommsDocRef.getDocuments { documentSnapshot, error in

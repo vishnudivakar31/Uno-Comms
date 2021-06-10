@@ -438,7 +438,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tu4-T1-vRx">
-                                <rect key="frame" x="0.0" y="105" width="414" height="757"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="708"/>
                                 <color key="backgroundColor" red="0.87450980389999999" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.1764705882" green="0.20392156859999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -539,7 +539,6 @@
                     <connections>
                         <outlet property="contactNameLabel" destination="Rtk-24-oM3" id="eii-N2-2XI"/>
                         <outlet property="tableView" destination="t5p-PN-hsl" id="mtG-Nl-yok"/>
-                        <segue destination="GNW-Nn-gtf" kind="presentation" identifier="GoToContacts" modalPresentationStyle="fullScreen" id="F4v-AQ-2iy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkF-Hm-m4j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -689,8 +688,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vhz-Aq-OeQ"/>
-        <segue reference="F4v-AQ-2iy"/>
         <segue reference="fW8-8n-6Qb"/>
     </inferredMetricsTieBreakers>
     <resources>

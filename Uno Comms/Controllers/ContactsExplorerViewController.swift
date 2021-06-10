@@ -35,7 +35,7 @@ class ContactsExplorerViewController: UIViewController {
     }
     
     @IBAction func goBackTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoToContacts", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     
     private func setupTableView() {
@@ -87,7 +87,7 @@ extension ContactsExplorerViewController: ContactsExplorerDelegate {
                 self.presentInfo(title: "Contacts", msg: error.localizedDescription)
             } else if let sharedComms = sharedComms {
                 DispatchQueue.main.async {
-                    self.sharedComms = sharedComms
+                    self.sharedComms = sharedComms.filter { $0.shared == true }
                     self.tableView.reloadData()
                 }
             } else {
