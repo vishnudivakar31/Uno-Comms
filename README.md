@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/Developer-Vishnu_Divakar-orange" />
   <img src="https://img.shields.io/badge/OpenSource-Always-green" />
   <img src="https://img.shields.io/badge/Platform-Swift-blue" />
-  <img src="https://img.shields.io/badge/SocialMedia-yellow" />
+  <img src="https://img.shields.io/badge/Domain-SocialMedia-yellow" />
 </p>
 
 <p align="justify">
