@@ -79,6 +79,9 @@ class ContactsExplorerViewController: UIViewController {
         } else if sharedComm.commType == .LINKEDIN {
             url = URL(string: "linkedin://profile/\(sharedComm.identifier)")
             httpURL = URL(string: "https://www.linkedlin.com/in/\(sharedComm.identifier)")
+        } else if sharedComm.commType == .WHATSAPP {
+            url = URL(string: "whatsapp://send?phone=\(sharedComm.identifier)")
+            httpURL = URL(string: "https://api.whatsapp.com/send/phone=\(sharedComm.identifier)")
         }
         
         if let url = url {
