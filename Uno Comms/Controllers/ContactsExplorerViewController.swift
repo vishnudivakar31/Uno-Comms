@@ -63,16 +63,24 @@ class ContactsExplorerViewController: UIViewController {
     
     private func performTableOption(sharedComm: SharedComm) {
         var url: URL?
+        var httpURL: URL?
         
         if sharedComm.commType == .EMAIL {
             sendMail(email: sharedComm.identifier)
+            return
         } else if sharedComm.commType == .TELEPHONE {
             url = URL(string: "tel://\(sharedComm.identifier)")
-            if let url = url {
-                let application = UIApplication.shared
-                if application.canOpenURL(url) {
-                    application.open(url, options: [:], completionHandler: nil)
-                }
+        } else if sharedComm.commType == .FACEBOOK {
+            url = URL(string: "fb://profile?app_scoped_user_id=\(sharedComm.identifier)")
+            httpURL = URL(string: "https://facebook.com/\(sharedComm.identifier)")!
+        }
+        
+        if let url = url {
+            let application = UIApplication.shared
+            if application.canOpenURL(url) {
+                application.open(url, options: [:], completionHandler: nil)
+            } else {
+                application.open(httpURL!, options: [:])
             }
         }
     }

@@ -22,7 +22,6 @@ class ContactViewController: UIViewController {
         setupTableView()
         contactService.contactDelegates = self
         contactService.getContact()
-        presentActivityAlert(title: "Please wait", msg: "get your contacts...")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,12 +49,6 @@ class ContactViewController: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    private func presentActivityAlert(title: String, msg: String) {
-        activityAlert.title = title
-        activityAlert.message = msg
-        present(activityAlert, animated: true, completion: nil)
     }
 }
 
