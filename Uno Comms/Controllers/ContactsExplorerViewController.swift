@@ -73,6 +73,9 @@ class ContactsExplorerViewController: UIViewController {
         } else if sharedComm.commType == .FACEBOOK {
             url = URL(string: "fb://profile?app_scoped_user_id=\(sharedComm.identifier)")
             httpURL = URL(string: "https://facebook.com/\(sharedComm.identifier)")!
+        } else if sharedComm.commType == .INSTAGRAM {
+            url = URL(string: "instagram://user?username=\(sharedComm.identifier)")
+            httpURL = URL(string: "https://instagram.com/\(sharedComm.identifier)")
         }
         
         if let url = url {
