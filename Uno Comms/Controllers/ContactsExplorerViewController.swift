@@ -76,6 +76,9 @@ class ContactsExplorerViewController: UIViewController {
         } else if sharedComm.commType == .INSTAGRAM {
             url = URL(string: "instagram://user?username=\(sharedComm.identifier)")
             httpURL = URL(string: "https://instagram.com/\(sharedComm.identifier)")
+        } else if sharedComm.commType == .LINKEDIN {
+            url = URL(string: "linkedin://profile/\(sharedComm.identifier)")
+            httpURL = URL(string: "https://www.linkedlin.com/in/\(sharedComm.identifier)")
         }
         
         if let url = url {
