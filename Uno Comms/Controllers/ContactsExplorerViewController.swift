@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class ContactsExplorerViewController: UIViewController {
 
@@ -62,17 +63,29 @@ class ContactsExplorerViewController: UIViewController {
     
     private func performTableOption(sharedComm: SharedComm) {
         var url: URL?
-        if sharedComm.commType == .TELEPHONE {
-            url = URL(string: "tel://\(sharedComm.identifier)")
-        }
         
-        if let url = url {
-            let application = UIApplication.shared
-            if application.canOpenURL(url) {
-                application.open(url, options: [:], completionHandler: nil)
+        if sharedComm.commType == .EMAIL {
+            sendMail(email: sharedComm.identifier)
+        } else if sharedComm.commType == .TELEPHONE {
+            url = URL(string: "tel://\(sharedComm.identifier)")
+            if let url = url {
+                let application = UIApplication.shared
+                if application.canOpenURL(url) {
+                    application.open(url, options: [:], completionHandler: nil)
+                }
             }
         }
     }
+    
+    private func sendMail(email: String) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([email])
+            present(mail, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 // Extension TableView Delegates
@@ -113,5 +126,12 @@ extension ContactsExplorerViewController: ContactsExplorerDelegate {
                 self.presentInfo(title: "Contacts", msg: "no records found...")
             }
         }
+    }
+}
+
+// Extenstion MFMAilComposerViewDeleagte
+extension ContactsExplorerViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

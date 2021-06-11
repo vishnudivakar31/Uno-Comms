@@ -91,7 +91,6 @@ extension ContactViewController: ContactDelegates {
     
     func getProfileCallback(userAccounts: [AccountUser]?, error: Error?) {
         DispatchQueue.main.async {
-            while !self.activityAlert.isViewLoaded {}
             self.activityAlert.dismiss(animated: true) {
                 if let error = error {
                     self.presentInfo(title: "Contacts", msg: error.localizedDescription)
@@ -110,14 +109,12 @@ extension ContactViewController: ContactDelegates {
     func getContactCallback(contact: Contact?, error: Error?) {
         DispatchQueue.main.async {
             if let error = error {
-                while !self.activityAlert.isViewLoaded {}
                 self.activityAlert.dismiss(animated: true) {
                     self.presentInfo(title: "Contacts", msg: error.localizedDescription)
                 }
             } else if let contact = contact {
                 self.contactService.getProfiles(uids: contact.friends)
             } else {
-                while !self.activityAlert.isViewLoaded {}
                 self.activityAlert.dismiss(animated: true) {
                     self.presentInfo(title: "Contacts", msg: "No records found")
                 }
